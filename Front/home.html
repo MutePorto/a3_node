@@ -276,7 +276,7 @@
                     <li class="nav-item">
                       <a class="nav-link" id="pills-contact-tab-icon" data-bs-toggle="pill" href="#eventos" role="tab"
                         aria-controls="eventos" aria-selected="false">
-                        <i class="far fa-envelope"></i>
+                        <i class="fas fa-road"></i>
                         Eventos
                       </a>
                     </li>
@@ -367,7 +367,7 @@
                         <div class="col-md-12">
                           <div class="card">
                             <div class="card-header">
-                              <button type="button" class="btn btn-info">
+                              <button type="button" class="btn btn-info" data-bs-toggle="modal" href="#modalCarros">
                                 <i class="fas fa-plus"></i> Carro
                               </button>
                             </div>
@@ -445,7 +445,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="card-header">
-                            <button type="button" class="btn btn-info">
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" href="#modalEventos">
                               <i class="fas fa-plus"></i> Evento
                             </button>
                           </div>
@@ -572,7 +572,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form id="send-form">
+            <form id="form-motorista">
               <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
                 <input type="text" class="form-control mb-3" id="nome" required>
@@ -584,8 +584,60 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" id="send-form" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" id="send-form-motorista" class="btn btn-primary">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal  Carros-->
+    <div class="modal fade" id="modalCarros" aria-hidden="true" aria-labelledby="modalCarrosLabel" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalCarrosLabel">Cadastrar Carro</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="form-carro">
+              <div class="mb-3">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="form-control mb-3" id="marca" required>
+                <label for="modelo" class="form-label">Modelo</label>
+                <input type="text" class="form-control mb-3" id="modelo" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" id="send-form-carro" class="btn btn-primary">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal  Eventos-->
+    <div class="modal fade" id="modalEventos" aria-hidden="true" aria-labelledby="modalEventosLabel" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalEventosLabel">Cadastrar Evento</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="form-evento">
+              <div class="mb-3">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="form-control mb-3" id="marca" required>
+                <label for="modelo" class="form-label">Modelo</label>
+                <input type="text" class="form-control mb-3" id="modelo" required>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" id="send-form-evento" class="btn btn-primary">Salvar</button>
           </div>
         </div>
       </div>
