@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Admin - Home</title>
+  <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+  <style>
+    body {
+      display: none;
+      /* Esconde o corpo inicialmente */
+    }
+  </style>
+  <link rel="icon" href="assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
+
+  <!-- Fonts and icons -->
+  <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+  <script>
+    WebFont.load({
+      google: { families: ["Public Sans:300,400,500,600,700"] },
+      custom: {
+        families: [
+          "Font Awesome 5 Solid",
+          "Font Awesome 5 Regular",
+          "Font Awesome 5 Brands",
+          "simple-line-icons",
+        ],
+        urls: ["assets/css/fonts.min.css"],
+      },
+      active: function () {
+        sessionStorage.fonts = true;
+      },
+    });
+  </script>
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/plugins.min.css" />
+  <link rel="stylesheet" href="assets/css/kaiadmin.min.css" />
+
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link rel="stylesheet" href="assets/css/demo.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar" data-background-color="dark">
+      <div class="sidebar-logo">
+        <!-- Logo Header -->
+        <div class="logo-header" data-background-color="dark">
+          <a href="#" class="logo">
+            <img src="assets/img/kaiadmin/logo_light.png" alt="navbar brand" class="navbar-brand" height="20" />
+          </a>
+          <div class="nav-toggle">
+            <button class="btn btn-toggle toggle-sidebar">
+              <i class="gg-menu-right"></i>
+            </button>
+            <button class="btn btn-toggle sidenav-toggler">
+              <i class="gg-menu-left"></i>
+            </button>
+          </div>
+          <button class="topbar-toggler more">
+            <i class="gg-more-vertical-alt"></i>
+          </button>
+        </div>
+        <!-- End Logo Header -->
+      </div>
+      <div class="sidebar-wrapper scrollbar scrollbar-inner">
+        <div class="sidebar-content">
+          <ul class="nav nav-secondary">
+            <li class="nav-item active">
+              <a href="#">
+                <i class="fas fa-home"></i>
+                <p>Dashboard</p>
+              </a>
+            </li>
+            <li class="nav-section">
+              <span class="sidebar-mini-icon">
+                <i class="fa fa-ellipsis-h"></i>
+              </span>
+              <h4 class="text-section">Components</h4>
+            </li>
+
+
+            <li class="nav-item">
+              <a onclick="logout()">
+                <i class="fas fa-user"></i>
+                <p>Logout</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+      <div class="main-header">
+        <div class="main-header-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="dark">
+            <a href="index.html" class="logo">
+              <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+          <!-- End Logo Header -->
+        </div>
+        <!-- Navbar Header -->
+        <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          data-background-color="dark">
+          <div class="container-fluid">
+
+
+            <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+              <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                  aria-expanded="false" aria-haspopup="true">
+                  <i class="fa fa-search"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-search animated fadeIn">
+                  <form class="navbar-left navbar-form nav-search">
+                    <div class="input-group">
+                      <input type="text" placeholder="Search ..." class="form-control" />
+                    </div>
+                  </form>
+                </ul>
+              </li>
+
+              <li class="nav-item topbar-user dropdown hidden-caret">
+                <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
+                  <div class="avatar-sm">
+                    <!-- <img src="assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle" /> -->
+                  </div>
+                  <span class="profile-username">
+                    <span class="op-7">Olá,</span>
+                    <span class="fw-bold" id="nomeUser"></span>
+                  </span>
+                </a>
+                <ul class="dropdown-menu dropdown-user animated fadeIn">
+                  <div class="dropdown-user-scroll scrollbar-outer">
+                    <li>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">My Profile</a>
+                      <a class="dropdown-item" href="#">My Balance</a>
+                      <a class="dropdown-item" href="#">Inbox</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Account Setting</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" onclick="logout()">Logout</a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+      </div>
+
+      <div class="container">
+        <div class="page-inner">
+          <div class="row">
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-stats card-primary card-round">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-5">
+                      <div class="icon-big text-center">
+                        <i class="fas fa-users"></i>
+                      </div>
+                    </div>
+                    <div class="col-7 col-stats">
+                      <div class="numbers">
+                        <p class="card-category">Motoristas</p>
+                        <h4 class="card-title">10</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-stats card-info card-round">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-5">
+                      <div class="icon-big text-center">
+                        <i class="fas fa-car"></i>
+                      </div>
+                    </div>
+                    <div class="col-7 col-stats">
+                      <div class="numbers">
+                        <p class="card-category">Carros</p>
+                        <h4 class="card-title">5</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-stats card-success card-round">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-5">
+                      <div class="icon-big text-center">
+                        <i class="fas fa-chart-pie"></i>
+                      </div>
+                    </div>
+                    <div class="col-7 col-stats">
+                      <div class="numbers">
+                        <p class="card-category">Sales</p>
+                        <h4 class="card-title">$ 1,345</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="card card-stats card-secondary card-round">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-5">
+                      <div class="icon-big text-center">
+                        <i class="far fa-check-circle"></i>
+                      </div>
+                    </div>
+                    <div class="col-7 col-stats">
+                      <div class="numbers">
+                        <p class="card-category">Order</p>
+                        <h4 class="card-title">576</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Painel</h4>
+                </div>
+                <div class="card-body">
+                  <ul class="nav nav-pills nav-secondary  nav-pills-no-bd nav-pills-icons justify-content-center"
+                    id="pills-tab-with-icon" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="pills-home-tab-icon" data-bs-toggle="pill" href="#motorista"
+                        role="tab" aria-controls="motorista" aria-selected="false">
+                        <i class="fas fa-id-card"></i>
+                        Motorista
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="pills-profile-tab-icon" data-bs-toggle="pill" href="#carros" role="tab"
+                        aria-controls="carros" aria-selected="false">
+                        <i class="fas fa-car-side"></i>
+                        Carros
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="pills-contact-tab-icon" data-bs-toggle="pill" href="#eventos" role="tab"
+                        aria-controls="eventos" aria-selected="false">
+                        <i class="far fa-envelope"></i>
+                        Eventos
+                      </a>
+                    </li>
+                  </ul>
+                  <div class="tab-content mt-2 mb-3" id="pills-with-icon-tabContent">
+                    <div class="tab-pane fade show active" id="motorista" role="tabpanel"
+                      aria-labelledby="pills-home-tab-icon">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="card">
+                            <div class="card-header">
+                              <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                href="#exampleModalToggle">
+                                <i class="fas fa-plus"></i> Motorista
+                              </button>
+                            </div>
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table id="basic-datatables"
+                                  class="display table table-striped table-secondary table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>Nome</th>
+                                      <th>cnh categoria</th>
+                                      <th>idade</th>
+                                      <th>Start date</th>
+                                      <th>ações</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>Tiger Nixon</td>
+                                      <td>B</td>
+                                      <td>61</td>
+                                      <td>2011/04/25</td>
+                                      <td>
+                                        <div class="h-50 w-50">
+                                          <button type="" class="btn-link btn-primary" data-original-title="Edit Task">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                          <button type="" class="btn-link btn-danger" data-original-title="Remove">
+                                            <i class="fa fa-times"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>Garrett Winters</td>
+                                      <td>AB</td>
+                                      <td>63</td>
+                                      <td>2011/07/25</td>
+                                      <td>
+                                        <div class="w-50">
+                                          <button class="btn-link btn-primary" data-original-title="Edit Task">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                          <button class="btn-link btn-danger" data-original-title="Remove">
+                                            <i class="fa fa-times"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>Ashton Cox</td>
+                                      <td>AB</td>
+                                      <td>66</td>
+                                      <td>2009/01/12</td>
+                                      <td>
+                                        <div class="w-50">
+                                          <button class="btn-link btn-primary">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                          <button class="btn-link btn-danger">
+                                            <i class="fa fa-times"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="carros" role="tabpanel" aria-labelledby="pills-profile-tab-icon">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="card">
+                            <div class="card-header">
+                              <button type="button" class="btn btn-info">
+                                <i class="fas fa-plus"></i> Carro
+                              </button>
+                            </div>
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table id="cars-datatables"
+                                  class="display table table-striped table-secondary table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>marca</th>
+                                      <th>modelo</th>
+                                      <th>Data-saida</th>
+                                      <th>Data-entrada</th>
+                                      <th>Ações</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>Tiger Nixon</td>
+                                      <td>B</td>
+                                      <td>61</td>
+                                      <td>2011/04/25</td>
+                                      <td>
+                                        <div class="h-50 w-50">
+                                          <button type="" class="btn-link btn-primary" data-original-title="Edit Task">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                          <button type="" class="btn-link btn-danger" data-original-title="Remove">
+                                            <i class="fa fa-times"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>Garrett Winters</td>
+                                      <td>AB</td>
+                                      <td>63</td>
+                                      <td>2011/07/25</td>
+                                      <td>
+                                        <div class="w-50">
+                                          <button class="btn-link btn-primary" data-original-title="Edit Task">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                          <button class="btn-link btn-danger" data-original-title="Remove">
+                                            <i class="fa fa-times"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>Ashton Cox</td>
+                                      <td>AB</td>
+                                      <td>66</td>
+                                      <td>2009/01/12</td>
+                                      <td>
+                                        <div class="w-50">
+                                          <button class="btn-link btn-primary">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                          <button class="btn-link btn-danger">
+                                            <i class="fa fa-times"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="eventos" role="tabpanel" aria-labelledby="pills-contact-tab-icon">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="card-header">
+                            <button type="button" class="btn btn-info">
+                              <i class="fas fa-plus"></i> Evento
+                            </button>
+                          </div>
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table id="events-datatables"
+                                  class="display table table-secondary table-striped table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>Motorista</th>
+                                      <th>Carro</th>
+                                      <th>Data-inicial</th>
+                                      <th>Data-final</th>
+                                      <th>ações</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>Tiger Nixon</td>
+                                      <td>B</td>
+                                      <td>61</td>
+                                      <td>2011/04/25</td>
+                                      <td>
+                                        <div class="h-50 w-50">
+                                          <button type="" class="btn-link btn-primary" data-original-title="Edit Task">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                          <button type="" class="btn-link btn-danger" data-original-title="Remove">
+                                            <i class="fa fa-times"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>Garrett Winters</td>
+                                      <td>AB</td>
+                                      <td>63</td>
+                                      <td>2011/07/25</td>
+                                      <td>
+                                        <div class="w-50">
+                                          <button class="btn-link btn-primary" data-original-title="Edit Task">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                          <button class="btn-link btn-danger" data-original-title="Remove">
+                                            <i class="fa fa-times"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>Ashton Cox</td>
+                                      <td>AB</td>
+                                      <td>66</td>
+                                      <td>2009/01/12</td>
+                                      <td>
+                                        <div class="w-50">
+                                          <button class="btn-link btn-primary">
+                                            <i class="fa fa-edit"></i>
+                                          </button>
+                                          <button class="btn-link btn-danger">
+                                            <i class="fa fa-times"></i>
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+
+            </div>
+
+          </div>
+        </div>
+
+        <footer class="footer">
+
+        </footer>
+      </div>
+    </div>
+
+    <!-- Custom template | don't include it in your project! -->
+    <!--   Core JS Files   -->
+    <script src="assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Datatables -->
+
+    <script src="assets/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="assets/js/kaiadmin.min.js"></script>
+
+    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
+    <!-- <script src="assets/js/setting-demo.js"></script> -->
+    <script src="assets/js/setting-demo2.js"></script>
+    <script src="assets/js/demo.js"></script>
+    <script src="assets/js/home.js"></script>
+
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+      tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Show a second modal and hide this one with the button below.
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
+              data-bs-dismiss="modal">Open second modal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $("#basic-datatables").DataTable({});
+        $("#cars-datatables").DataTable({});
+        $("#events-datatables").DataTable({});
+
+      });
+    </script>
+</body>
+
+</html>
