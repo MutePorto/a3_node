@@ -294,7 +294,7 @@
                             </div>
                             <div class="card-body">
                               <div class="table-responsive">
-                                <table id="basic-datatables"
+                                <table id="motorista-datatables"
                                   class="display table table-striped table-secondary table-hover">
                                   <thead>
                                     <tr>
@@ -305,7 +305,7 @@
                                       <th>ações</th>
                                     </tr>
                                   </thead>
-                                  <tbody>
+                                  <tbody id="body-table-motorista">
                                     <tr>
                                       <td>Tiger Nixon</td>
                                       <td>B</td>
@@ -648,7 +648,7 @@
 
     <script>
       $(document).ready(function () {
-        $("#basic-datatables").DataTable({});
+        $("#motorista-datatables").DataTable({});
         $("#cars-datatables").DataTable({});
         $("#events-datatables").DataTable({});
 
