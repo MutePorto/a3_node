@@ -222,7 +222,7 @@
                     </div>
                     <div class="col-7 col-stats">
                       <div class="numbers">
-                        <p class="card-category">Sales</p>
+                        <p class="card-category">Total Eventos</p>
                         <h4 class="card-title">$ 1,345</h4>
                       </div>
                     </div>
@@ -241,7 +241,7 @@
                     </div>
                     <div class="col-7 col-stats">
                       <div class="numbers">
-                        <p class="card-category">Order</p>
+                        <p class="card-category">Eventos mês</p>
                         <h4 class="card-title">576</h4>
                       </div>
                     </div>
@@ -561,6 +561,7 @@
     <script src="assets/js/setting-demo2.js"></script>
     <script src="assets/js/demo.js"></script>
     <script src="assets/js/home.js"></script>
+    <script src="assets/js/axios/user.js"></script>
 
 
     <!-- Modal  Motorista-->
@@ -606,6 +607,8 @@
                 <input type="text" class="form-control mb-3" id="marca" required>
                 <label for="modelo" class="form-label">Modelo</label>
                 <input type="text" class="form-control mb-3" id="modelo" required>
+                <label for="kmAtual" class="form-label">Km Atual</label>
+                <input type="text" class="form-control mb-3" id="kmAtual" required>
               </div>
             </form>
           </div>
@@ -628,9 +631,9 @@
           <div class="modal-body">
             <form id="form-evento">
               <div class="mb-3">
-                <label for="marca" class="form-label">Marca</label>
-                <input type="text" class="form-control mb-3" id="marca" required>
-                <label for="modelo" class="form-label">Modelo</label>
+                <label for="marca" class="form-label">Evento</label>
+                <input type="text" class="form-control mb-3" id="evento" required>
+                <label for="modelo" class="form-label">Evento</label>
                 <input type="text" class="form-control mb-3" id="modelo" required>
               </div>
             </form>
