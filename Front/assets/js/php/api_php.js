@@ -1,6 +1,6 @@
 const url = "https://lightgrey-louse-782029.hostingersite.com/"
 
-const res = document.getElementById('res')
+const bt = document.getElementById('body-table-motorista') // ID da tabela onde os dados serão exibidos
 
 function getUser() {
 
@@ -9,11 +9,27 @@ function getUser() {
         method: 'POST',
         success: (dados) => {
             console.log(dados)
-            var nomes = JSON.parse(dados)
-            console.log(nomes.length)
+            let res = JSON.parse(dados)
+            console.log(res.length)
 
-            for (let index = 0; index < nomes.length; index++) {
-                document.querySelector('#res').innerHTML += '<label>' + nomes[index]['nome'] + '</label>'
+            bt.innerHTML = '' // Limpa o conteúdo da tabela antes de adicionar novos dados
+
+            // Criando o cabeçalho da tabela
+
+            for (let index = 0; index < dados.length; index++) {
+                bt.innerHTML += '<tr><td>' + res[index]['nome'] +
+                    '</td><td>' + res[index]['senha'] +
+                    '</td><td>' + res[index]['email'] +
+                    '</td><td>' + res[index]['email'] +
+                    `</td><td>
+                    <div class="h-50 w-50">
+                        <button onclick="${res[index]['id']}" class="btn-link btn-primary" data-original-title="Edit Task">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button onclick="${res[index]['id']}" class="btn-link btn-danger" data-original-title="Remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div></td></tr>`
             }
         }
     })
