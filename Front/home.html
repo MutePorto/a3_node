@@ -293,7 +293,7 @@
                               </button>
                             </div>
                             <div class="card-body">
-                              <div class="table-responsive">
+                              <div class="table-responsive" id="table-motorista">
                                 <table id="motorista-datatables"
                                   class="display table table-striped table-secondary table-hover">
                                   <thead>
@@ -306,7 +306,7 @@
                                     </tr>
                                   </thead>
                                   <tbody id="body-table-motorista">
-                                    <!-- Aqui será preenchido com os dados do motorista que vem do banco de dados -->
+
                                   </tbody>
                                 </table>
                               </div>
@@ -491,17 +491,24 @@
     </div>
 
     <!-- Custom template | don't include it in your project! -->
-    <!--   Core JS Files   -->
+    <!-- Core JS Files   -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="assets/js/core/jquery-3.7.1.min.js"></script>
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
+
+    <!-- Funcionalidades backend -->
+    <script src="assets/js/php/api_php.js"></script>
+    <!-- retirar o comenatario desta linha para funcionar com API PHP -->
+    <!-- <script src="assets/js/axios/user.js"></script> -->
+    <!-- retirar o comenatario desta linha para funcionar com backend node -->
 
     <!-- jQuery Scrollbar -->
     <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
     <!-- Datatables -->
 
-    <script src="assets/js/plugin/datatables/datatables.min.js"></script>
+    <script defer src="assets/js/plugin/datatables/datatables.min.js"></script>
 
     <!-- Sweet Alert -->
     <script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
@@ -514,9 +521,6 @@
     <script src="assets/js/setting-demo2.js"></script>
     <script src="assets/js/demo.js"></script>
     <script src="assets/js/home.js"></script>
-    <!-- <script src="assets/js/axios/user.js"></script> -->
-    <script src="assets/js/php/api_php.js"></script>
-
 
     <!-- Modal  Motorista-->
     <div class="modal fade" id="modalMotorista" aria-hidden="true" aria-labelledby="modalMotoristaLabel" tabindex="-1">
@@ -602,10 +606,11 @@
 
     <script>
       $(document).ready(function () {
-        $("#motorista-datatables").DataTable({});
-        $("#cars-datatables").DataTable({});
-        $("#events-datatables").DataTable({});
-
+        setTimeout(function () {
+          $("#motorista-datatables").DataTable({});
+          $("#cars-datatables").DataTable({});
+          $("#events-datatables").DataTable({});
+        }, 3000); // 3000 milissegundos = 3 segundos
       });
     </script>
 </body>
