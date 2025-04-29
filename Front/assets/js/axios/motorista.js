@@ -2,7 +2,7 @@ const url = "https://lightgrey-louse-782029.hostingersite.com/" // URL do servid
 
 const bt = document.getElementById('body-table-motorista') // ID da tabela onde os dados serão exibidos
 
-function getUser() { // Função para obter os dados do servidor    
+function getMotorista() { // Função para obter os dados do servidor    
     bt.innerHTML = '';
     axios.get(url + 'getUser.php') // Fazendo uma requisição GET para o servidor
         .then(response => { // Quando a requisição for bem-sucedida
@@ -21,10 +21,10 @@ function getUser() { // Função para obter os dados do servidor
                     '</td><td>' + dados[index]['email'] +
                     `<td>
                     <div class="w-50">
-                        <button class="btn-link btn-primary" onclick="editUser(${dados[index]['id']})">
+                        <button class="btn-link btn-primary" onclick="editMotorista(${dados[index]['id']})">
                         <i class="fa fa-edit"></i>
                         </button>
-                        <button class="btn-link btn-danger" onclick="deleteUser(${dados[index]['id']})">
+                        <button class="btn-link btn-danger" onclick="deleteMotorista(${dados[index]['id']})">
                         <i class="fa fa-times"></i>
                         </button>
                     </div>
@@ -34,13 +34,15 @@ function getUser() { // Função para obter os dados do servidor
         .catch(error => { console.log(error) })
 }
 
-getUser();
+getMotorista();
 
-function editUser(id) {
+getMotorista();
+
+function editMotorista(id) {
     console.log(id + ' edit')
 }
 
-function deleteUser(id) { // Função para deletar um usuário
+function deleteMotorista(id) { // Função para deletar um usuário
     console.log(id + ' delete')
     // $.ajax({
     //     url: `${url}deleteUser.php`,

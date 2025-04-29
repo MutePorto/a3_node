@@ -2,7 +2,7 @@ const url = "https://lightgrey-louse-782029.hostingersite.com/"
 
 const btm = document.getElementById('body-table-motorista') // ID da tabela onde os dados serão exibidos
 
-function getUser() {
+function getMotorista() {
 
     $.ajax({
         url: `${url}getUser.php`,
@@ -21,10 +21,10 @@ function getUser() {
                     '</td><td>' + res[index]['email'] +
                     `<td>
                     <div class="w-50">
-                        <button class="btn-link btn-primary" onclick="editUser(${res[index]['id']})">
+                        <button class="btn-link btn-primary" onclick="editMotorista(${res[index]['id']})">
                         <i class="fa fa-edit"></i>
                         </button>
-                        <button class="btn-link btn-danger" onclick="deleteUser(${res[index]['id']})">
+                        <button class="btn-link btn-danger" onclick="deleteMotorista(${res[index]['id']})">
                         <i class="fa fa-times"></i>
                         </button>
                     </div>
@@ -34,13 +34,13 @@ function getUser() {
     })
 }
 
-getUser();
+getMotorista();
 
-function editUser(id) {
+function editMotorista(id) {
     console.log(id + ' edit')
 }
 
-function deleteUser(id) { // Função para deletar um usuário
+function deleteMotorista(id) { // Função para deletar um usuário
     console.log(id + ' delete')
     // $.ajax({
     //     url: `${url}deleteUser.php`,
