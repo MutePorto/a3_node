@@ -36,8 +36,6 @@ function getMotorista() { // Função para obter os dados do servidor
 
 getMotorista();
 
-getMotorista();
-
 function editMotorista(id) {
     console.log(id + ' edit')
 }
