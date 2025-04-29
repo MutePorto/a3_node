@@ -35,3 +35,23 @@ function getUser() { // Função para obter os dados do servidor
 }
 
 getUser();
+
+function editUser(id) {
+    console.log(id + ' edit')
+}
+
+function deleteUser(id) { // Função para deletar um usuário
+    console.log(id + ' delete')
+    // $.ajax({
+    //     url: `${url}deleteUser.php`,
+    //     method: 'POST',
+    //     data: { id: id },
+    //     dataType: 'json'
+    // }).done(function (result) {
+    //     console.log(result)
+    //     getUser() // Atualiza a tabela após a exclusão
+    // })
+    //     .fail(function (error) {
+    //         console.error('Erro ao deletar usuário:', error)
+    //     })
+}
