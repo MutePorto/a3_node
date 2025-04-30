@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
 );
 
 sequelize.authenticate()
-  .then(() => console.log('✅ Conectado ao MySQL com Sequelize!'))
+  .then(() => console.log('Conectado ao MySQL com Sequelize!'))
   .catch(err => console.error('Erro ao conectar:', err));
 
 module.exports = sequelize;
