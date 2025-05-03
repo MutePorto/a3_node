@@ -4,7 +4,13 @@ const cors = require('cors');
 
 const sequelize = require('./config/sequelize');
 const userRoutes = require('./routes/userRoutes');
-const motoristaRoutes = require('./routes/motoristaRoutes');
+
+const User = require('./models/Users');
+const Motorista = require('./models/Motoristas');
+const Carro = require('./models/Carros');
+const Evento = require('./models/Eventos');
+const eventosRoutes = require('./routes/eventosRoutes');
+
 
 const app = express();
 
@@ -16,11 +22,16 @@ app.get('/', (req, res) => {
 });
 
 app.use('/usuarios', userRoutes);
-app.use('/motoristas', motoristaRoutes);
+app.use('/eventos', eventosRoutes);
+
+
 sequelize.authenticate()
   .then(() => {
     console.log('Conexão com o banco de dados estabelecida com sucesso.');
 
+    return sequelize.sync();
+  })
+  .then(() => {
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
       console.log(`Servidor rodando na porta ${PORT}`);
@@ -29,12 +40,3 @@ sequelize.authenticate()
   .catch((err) => {
     console.error('Erro ao conectar com o banco de dados:', err);
   });
-
-sequelize.sync({ force: false }) // use force: true para recriar as tabelas do zero
-  .then(() => {
-    console.log('Tabelas sincronizadas com o banco de dados.');
-  })
-  .catch(err => {
-    console.error('Erro ao sincronizar tabelas:', err);
-  });
-
