@@ -185,7 +185,7 @@
                     <div class="col-7 col-stats">
                       <div class="numbers">
                         <p class="card-category">Motoristas</p>
-                        <h4 class="card-title">10</h4>
+                        <h4 class="card-title" id="qMotoristas"></h4>
                       </div>
                     </div>
                   </div>
@@ -204,7 +204,7 @@
                     <div class="col-7 col-stats">
                       <div class="numbers">
                         <p class="card-category">Carros</p>
-                        <h4 class="card-title">5</h4>
+                        <h4 class="card-title" id="qCarros"></h4>
                       </div>
                     </div>
                   </div>
@@ -223,7 +223,7 @@
                     <div class="col-7 col-stats">
                       <div class="numbers">
                         <p class="card-category">Total Eventos</p>
-                        <h4 class="card-title">$ 1,345</h4>
+                        <h4 class="card-title"> 1345</h4>
                       </div>
                     </div>
                   </div>
@@ -535,15 +535,16 @@
                 <label for="nome" class="form-label">Nome</label>
                 <input type="text" class="form-control mb-3" id="nome" required>
                 <label for="cnh" class="form-label">CNH</label>
-                <input type="text" class="form-control mb-3" id="cnd" required>
+                <input type="text" class="form-control mb-3" id="cnh" required>
                 <label for="dataNasc" class="form-label ">Data de Nascimento</label>
-                <input type="date" class="form-control " id="dataNasc" required>
+                <input type="date" class="form-control " id="data_nasc" required>
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" id="send-form-motorista" class="btn btn-primary">Salvar</button>
+            <button type="button" id="send-form-motorista" class="btn btn-primary" data-bs-dismiss="modal"
+              onclick="setMotorista()">Salvar</button>
           </div>
         </div>
       </div>
