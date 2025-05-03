@@ -1,10 +1,10 @@
-const url = "http://localhost:3306/" // URL do servidor
+const url = "http://localhost:3000/" // URL do servidor
 
 const bt = document.getElementById('body-table-motorista') // ID da tabela onde os dados serão exibidos
 
 function getMotorista() { // Função para obter os dados do servidor    
     bt.innerHTML = '';
-    axios.get(url + 'usuarios') // Fazendo uma requisição GET para o servidor
+    axios.get(url + 'motoristas') // Fazendo uma requisição GET para o servidor
         .then(response => { // Quando a requisição for bem-sucedida
             console.log(response) // Exibindo a resposta no console
             const dados = response.data // Armazenando os dados da resposta em uma variável
@@ -16,9 +16,9 @@ function getMotorista() { // Função para obter os dados do servidor
 
             for (let index = 0; index < dados.length; index++) {
                 bt.innerHTML += '<tr><td>' + dados[index]['nome'] +
-                    '</td><td>' + dados[index]['senha'] +
-                    '</td><td>' + dados[index]['email'] +
-                    '</td><td>' + dados[index]['tipo'] +
+                    '</td><td>' + dados[index]['cnh'] +
+                    '</td><td>' + dados[index]['data_nascimento'] +
+                    '</td><td>' + dados[index]['status'] +
                     `<td>
                     <div class="w-50">
                         <button class="btn-link btn-primary" onclick="editMotorista(${dados[index]['id']})">
@@ -30,6 +30,7 @@ function getMotorista() { // Função para obter os dados do servidor
                     </div>
                     </td></tr>`
             }
+            $("#motorista-datatables").DataTable({}); // Inicializa o DataTable após adicionar os dados
         })
         .catch(error => { console.log(error) })
 }
