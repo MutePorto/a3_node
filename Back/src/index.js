@@ -5,10 +5,6 @@ const cors = require('cors');
 const sequelize = require('./config/sequelize');
 const userRoutes = require('./routes/userRoutes');
 
-const User = require('./models/Users');
-const Motorista = require('./models/Motoristas');
-const Carro = require('./models/Carros');
-const Evento = require('./models/Eventos');
 const eventosRoutes = require('./routes/eventosRoutes');
 
 
