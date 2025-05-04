@@ -65,5 +65,4 @@ router.get('/getMotoristaById', async (req, res) => {
   }
 });
 
-
 module.exports = router;

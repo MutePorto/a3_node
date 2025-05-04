@@ -35,8 +35,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-module.exports = router;
-
 router.put('/:id/devolucao', async (req, res) => {
     try {
       const { id } = req.params;
