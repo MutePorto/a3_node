@@ -25,7 +25,7 @@ const Carro = sequelize.define('Carro', {
   }
 }, {
   tableName: 'carros',
-  timestamps: false
+  timestamps: true
 });
 
 module.exports = Carro;
