@@ -49,6 +49,7 @@ function getMotoristaById(id) { // Função para obter um motorista específico 
             const dados = response.data // Armazenando os dados da resposta em uma variável
             console.log(dados)  // Exibindo os dados no console
 
+            $('#idMotorista').val(dados.id) // Preenchendo o campo de ID com os dados do motorista
             $('#nome').val(dados.nome) // Preenchendo o campo de nome com os dados do motorista
             $('#cnh').val(dados.cnh) // Preenchendo o campo de CNH com os dados do motorista
             $('#data_nasc').val(dados.data_nascimento) // Preenchendo o campo de data de nascimento com os dados do motorista
@@ -57,19 +58,50 @@ function getMotoristaById(id) { // Função para obter um motorista específico 
         .catch(error => { console.log(error.message) })
 }
 
-function editMotorista(id) { // Função para editar um motorista
-    console.log(id + ' edit')
+function editMotorista() { // Função para editar um motorista
+    const id = document.getElementById('idMotorista').value // Obtendo o valor do campo de ID
+    const nome = document.getElementById('nome').value // Obtendo o valor do campo de nome
+    const cnh = document.getElementById('cnh').value // Obtendo o valor do campo de CNH
+    const data_nasc = document.getElementById('data_nasc').value // Obtendo o valor do campo de data de nascimento
+    console.log(id, nome, cnh, data_nasc) // Exibindo os valores no console
 
-    axios.post(url + 'motoristas/editMotorista', { id: id }) // Fazendo uma requisição GET para o servidor
-
+    axios.post(url + 'motoristas/editMotorista', { id: id, nome: nome, cnh: cnh, data_nascimento: data_nasc }) // Fazendo uma requisição POST para editar o motorista
         .then(response => { // Quando a requisição for bem-sucedida
             console.log(response) // Exibindo a resposta no console
-            const dados = response.data // Armazenando os dados da resposta em uma variável
-            console.log(dados)  // Exibindo os dados no console
+
+            swal(`Motorista editado com sucesso ${nome.toUpperCase()}`, {
+                icon: "success",
+                buttons: {
+                    confirm: {
+                        className: "btn btn-success",
+                    },
+                },
+            })
+                .then(() => {
+                    $('#motorista-datatables').DataTable().clear().destroy(); // Limpa e destrói a tabela DataTable
+                    getMotorista() // Atualiza a tabela após a edição
+                });
 
 
         })
-        .catch(error => { console.log(error.message) }) // Exibindo erros no console
+        .catch(error => {
+            console.log(error)
+            swal(`Erro ao editar motorista: ${error.message}`, {
+                icon: "error",
+                buttons: {
+                    confirm: {
+                        className: "btn btn-danger",
+                    },
+                },
+            })
+                .then(() => {
+                    $('#nome').val("").focus(); // Limpa o campo de nome e foca nele
+                    $('#cnh').val(""); // Limpa o campo de CNH
+                    $('#data_nasc').val(""); // Limpa o campo de data de nascimento
+
+
+                });
+        })
 }
 
 function setMotorista() { // Função para adicionar um novo motorista
