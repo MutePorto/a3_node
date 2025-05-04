@@ -8,6 +8,13 @@ const motoristaRoutes = require('./routes/motoristaRoutes');
 const carroRoutes = require('./routes/carrosRoutes');
 const eventosRoutes = require('./routes/eventosRoutes');
 
+sequelize.sync({ alter: true })
+  .then(() => {
+    console.log('Tabelas sincronizadas com sucesso!');
+  })
+  .catch((err) => {
+    console.error('Erro ao sincronizar as tabelas:', err);
+  });
 
 const app = express();
 
@@ -30,6 +37,7 @@ sequelize.authenticate()
 
     return sequelize.sync();
   })
+  .then(() => sequelize.sync({after: true}))
   .then(() => {
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {

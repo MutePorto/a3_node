@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Lista de carros
+// Lista dos carros
 router.get('/', async (req, res) => {
   try {
     const carros = await Carro.findAll();
