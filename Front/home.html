@@ -288,7 +288,8 @@
                         <div class="col-md-12">
                           <div class="card">
                             <div class="card-header">
-                              <button type="button" class="btn btn-info" data-bs-toggle="modal" href="#modalMotorista">
+                              <button type="button" id="add-motorista" class="btn btn-info" data-bs-toggle="modal"
+                                href="#modalMotorista">
                                 <i class="fas fa-plus"></i> Motorista
                               </button>
                             </div>
@@ -543,8 +544,10 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" id="send-form-motorista" class="btn btn-primary" data-bs-dismiss="modal"
+            <button type="button" id="send-form-motorista" class="btn btn-success" data-bs-dismiss="modal"
               onclick="setMotorista()">Salvar</button>
+            <button type="button" id="edit-motorista" class="btn btn-warning" data-bs-dismiss="modal"
+              onclick="editMotorista()" style="display: none;">Alterar</button>
           </div>
         </div>
       </div>
@@ -605,6 +608,24 @@
     </div>
 
     <script>
+      $("#add-motorista").click(function () { // Ao clicar no botão de adicionar motorista, exibe o modal e esconde o botão de editar motorista
+        document.getElementById('send-form-motorista').style.display = 'block' // Exibe o botão de salvar motorista;
+        document.getElementById('edit-motorista').style.display = 'none' // Exibe o botão de editar motorista;
+      });
+
+      // Função para fazer reset dos modais 
+      $('#modalMotorista').on('hidden.bs.modal', function () {
+        $('#form-motorista')[0].reset();
+      });
+      $('#modalCarros').on('hidden.bs.modal', function () {
+        $('#form-carro')[0].reset();
+      });
+      $('#modalEventos').on('hidden.bs.modal', function () {
+        $('#form-evento')[0].reset();
+      });
+
+      // End Função para fazer reset dos modais
+
       $(document).ready(function () {
 
 

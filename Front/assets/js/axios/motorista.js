@@ -21,7 +21,7 @@ function getMotorista() { // Função para obter os dados do servidor
                     '</td><td>' + dados[index]['status'] +
                     `<td>
                     <div class="w-50">
-                        <button class="btn-link btn-primary" onclick="editMotorista(${dados[index]['id']})">
+                        <button class="btn-link btn-primary" onclick="getMotoristaById(${dados[index]['id']})" data-bs-toggle="modal" href="#modalMotorista">
                         <i class="fa fa-edit"></i>
                         </button>
                         <button class="btn-link btn-danger" onclick="deleteMotorista(${dados[index]['id']})">
@@ -38,8 +38,38 @@ function getMotorista() { // Função para obter os dados do servidor
 
 getMotorista();
 
+function getMotoristaById(id) { // Função para obter um motorista específico pelo ID
+    console.log(id + ' get')
+    document.getElementById('edit-motorista').style.display = 'block' // Exibe o botão de editar motorista
+    document.getElementById('send-form-motorista').style.display = 'none' // Exibe o botão de salvar motorista;
+    axios.post(url + 'motoristas/getMotoristaById', { id: id }) // Fazendo uma requisição POST para o servidor
+        .then(response => { // Quando a requisição for bem-sucedida
+
+            console.log(response) // Exibindo a resposta no console
+            const dados = response.data // Armazenando os dados da resposta em uma variável
+            console.log(dados)  // Exibindo os dados no console
+
+            $('#nome').val(dados.nome) // Preenchendo o campo de nome com os dados do motorista
+            $('#cnh').val(dados.cnh) // Preenchendo o campo de CNH com os dados do motorista
+            $('#data_nasc').val(dados.data_nascimento) // Preenchendo o campo de data de nascimento com os dados do motorista
+
+        })
+        .catch(error => { console.log(error.message) })
+}
+
 function editMotorista(id) { // Função para editar um motorista
     console.log(id + ' edit')
+
+    axios.post(url + 'motoristas/editMotorista', { id: id }) // Fazendo uma requisição GET para o servidor
+
+        .then(response => { // Quando a requisição for bem-sucedida
+            console.log(response) // Exibindo a resposta no console
+            const dados = response.data // Armazenando os dados da resposta em uma variável
+            console.log(dados)  // Exibindo os dados no console
+
+
+        })
+        .catch(error => { console.log(error.message) }) // Exibindo erros no console
 }
 
 function setMotorista() { // Função para adicionar um novo motorista
