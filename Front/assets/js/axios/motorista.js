@@ -38,7 +38,7 @@ function getMotorista() { // Função para obter os dados do servidor
 
 getMotorista();
 
-function editMotorista(id) {
+function editMotorista(id) { // Função para editar um motorista
     console.log(id + ' edit')
 }
 
@@ -71,21 +71,54 @@ function setMotorista() { // Função para adicionar um novo motorista
 
 
         })
-        .catch(error => { console.log(error) }) // Exibindo erros no console
+        .catch(error => {
+            console.log(error)
+            swal(`Erro ao cadastrar novo motorista: ${error.message}`, {
+                icon: "error",
+                buttons: {
+                    confirm: {
+                        className: "btn btn-danger",
+                    },
+                },
+            })
+                .then(() => {
+                    $('#nome').val("").focus(); // Limpa o campo de nome e foca nele
+                    $('#cnh').val(""); // Limpa o campo de CNH
+                    $('#data_nasc').val(""); // Limpa o campo de data de nascimento
+
+
+                });
+        })
 }
 
-function deleteMotorista(id) { // Função para deletar um usuário
+function deleteMotorista(id) { // Função para deletar um motorista
     console.log(id + ' delete')
-    // $.ajax({
-    //     url: `${url}deleteUser.php`,
-    //     method: 'POST',
-    //     data: { id: id },
-    //     dataType: 'json'
-    // }).done(function (result) {
-    //     console.log(result)
-    //     getUser() // Atualiza a tabela após a exclusão
-    // })
-    //     .fail(function (error) {
-    //         console.error('Erro ao deletar usuário:', error)
-    //     })
+    swal({
+        title: "Tem certeza que deseja deletar?",
+        icon: "warning",
+        buttons: {
+            confirm: {
+                text: "Sim",
+                className: "btn btn-danger",
+            },
+            cancel: {
+                visible: true,
+                className: "btn btn-info",
+            },
+        },
+    })
+        .then((willDelete) => {
+            if (willDelete) {
+                axios.post(url + 'motoristas/deleteMotorista', { id: id }) // Fazendo uma requisição DELETE para o servidor
+                    .then(response => { // Quando a requisição for bem-sucedida
+                        console.log(response) // Exibindo a resposta no console
+                        $('#motorista-datatables').DataTable().clear().destroy(); // Limpa e destrói a tabela DataTable
+                        getMotorista() // Atualiza a tabela após a deleção
+                    })
+                    .catch(error => { console.log(error.message) }) // Exibindo erros no console
+            } else {
+                swal("Deleção cancelada!"); // Mensagem de cancelamento
+            }
+        });
 }
+

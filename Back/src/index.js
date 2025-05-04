@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const sequelize = require('./config/sequelize');
 const userRoutes = require('./routes/userRoutes');
-
+const motoristaRoutes = require('./routes/motoristaRoutes');
 const eventosRoutes = require('./routes/eventosRoutes');
 
 
@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 
 app.use('/usuarios', userRoutes);
 app.use('/eventos', eventosRoutes);
+app.use('/motoristas', motoristaRoutes);
 
 
 sequelize.authenticate()
