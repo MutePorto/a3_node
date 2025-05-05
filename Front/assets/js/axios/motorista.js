@@ -4,7 +4,7 @@ const bt = document.getElementById('body-table-motorista') // ID da tabela onde 
 
 function getMotorista() { // Função para obter os dados do servidor    
     bt.innerHTML = '';
-    axios.get(url + 'motoristas/getMotorista') // Fazendo uma requisição GET para o servidor
+    axios.get(url + 'motoristas/') // Fazendo uma requisição GET para o servidor
         .then(response => { // Quando a requisição for bem-sucedida
             console.log(response) // Exibindo a resposta no console
             const dados = response.data // Armazenando os dados da resposta em uma variável
@@ -42,7 +42,7 @@ function getMotoristaById(id) { // Função para obter um motorista específico 
     console.log(id + ' get')
     document.getElementById('edit-motorista').style.display = 'block' // Exibe o botão de editar motorista
     document.getElementById('send-form-motorista').style.display = 'none' // Exibe o botão de salvar motorista;
-    axios.post(url + 'motoristas/getMotoristaById', { id: id }) // Fazendo uma requisição POST para o servidor
+    axios.post(url + 'motoristas/id', { id: id }) // Fazendo uma requisição POST para o servidor
         .then(response => { // Quando a requisição for bem-sucedida
 
             console.log(response) // Exibindo a resposta no console
@@ -65,7 +65,7 @@ function editMotorista() { // Função para editar um motorista
     const data_nasc = document.getElementById('data_nasc').value // Obtendo o valor do campo de data de nascimento
     console.log(id, nome, cnh, data_nasc) // Exibindo os valores no console
 
-    axios.post(url + 'motoristas/editMotorista', { id: id, nome: nome, cnh: cnh, data_nascimento: data_nasc }) // Fazendo uma requisição POST para editar o motorista
+    axios.put(url + 'motoristas/', { id: id, nome: nome, cnh: cnh, data_nascimento: data_nasc }) // Fazendo uma requisição POST para editar o motorista
         .then(response => { // Quando a requisição for bem-sucedida
             console.log(response) // Exibindo a resposta no console
 
@@ -111,7 +111,7 @@ function setMotorista() { // Função para adicionar um novo motorista
 
     console.log(nome, cnh, data_nasc) // Exibindo os valores no console
 
-    axios.post(url + 'motoristas/setMotorista', { nome: nome, cnh: cnh, data_nascimento: data_nasc }) // Fazendo uma requisição POST para adicionar um novo motorista
+    axios.post(url + 'motoristas/', { nome: nome, cnh: cnh, data_nascimento: data_nasc }) // Fazendo uma requisição POST para adicionar um novo motorista
         .then(response => { // Quando a requisição for bem-sucedida
             console.log(response) // Exibindo a resposta no console
 
@@ -171,9 +171,17 @@ function deleteMotorista(id) { // Função para deletar um motorista
     })
         .then((willDelete) => {
             if (willDelete) {
-                axios.post(url + 'motoristas/deleteMotorista', { id: id }) // Fazendo uma requisição DELETE para o servidor
+                axios.delete(url + 'motoristas/', { data: { id: id } }) // Fazendo uma requisição DELETE para o servidor
                     .then(response => { // Quando a requisição for bem-sucedida
                         console.log(response) // Exibindo a resposta no console
+                        swal(`Motorista deletado com sucesso`, {
+                            icon: "success",
+                            buttons: {
+                                confirm: {
+                                    className: "btn btn-success",
+                                },
+                            },
+                        })
                         $('#motorista-datatables').DataTable().clear().destroy(); // Limpa e destrói a tabela DataTable
                         getMotorista() // Atualiza a tabela após a deleção
                     })
