@@ -11,19 +11,6 @@ router.get('/getMotorista', async (req, res) => {
   }
 });
 
-router.post('/getMotoristaById', async (req, res) => {
-  try {
-    const { id } = req.body;
-    const driver = await Motorista.findByPk(id);
-    if (!driver) {
-      return res.status(404).json({ error: 'Motorista não encontrado' });
-    }
-    res.json(driver);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
 router.post('/setMotorista', async (req, res) => {
   try {
     const { nome, cnh, data_nascimento } = req.body;
