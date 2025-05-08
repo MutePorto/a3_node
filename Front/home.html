@@ -408,6 +408,7 @@
     <!-- <script src="assets/js/php/api_php.js"></script> -->
     <!-- retirar o comenatario desta linha para funcionar com API PHP -->
     <script src="assets/js/axios/motorista.js"></script>
+    <script src="assets/js/axios/carro.js"></script>
     <!-- retirar o comenatario desta linha para funcionar com backend node -->
 
     <!-- jQuery Scrollbar -->
@@ -471,18 +472,24 @@
           <div class="modal-body">
             <form id="form-carro">
               <div class="mb-3">
+                <input type="hidden" name="idCarro" id="idCarro" value="">
                 <label for="marca" class="form-label">Marca</label>
                 <input type="text" class="form-control mb-3" id="marca" required>
                 <label for="modelo" class="form-label">Modelo</label>
                 <input type="text" class="form-control mb-3" id="modelo" required>
                 <label for="kmAtual" class="form-label">Km Atual</label>
                 <input type="text" class="form-control mb-3" id="kmAtual" required>
+                <label for="status" class="form-label">Status</label>
+                <input type="text" class="form-control mb-3" id="status">
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" id="send-form-carro" class="btn btn-primary">Salvar</button>
+            <button type="button" id="send-form-carro" class="btn btn-success" data-bs-dismiss="modal"
+              onclick="setCarro()">Salvar</button>
+            <button type="button" id="edit-carro" class="btn btn-warning" data-bs-dismiss="modal" onclick="editCarro()"
+              style="display: none;">Alterar</button>
           </div>
         </div>
       </div>
@@ -535,8 +542,6 @@
 
       $(document).ready(function () {
 
-
-        $("#cars-datatables").DataTable({});
         $("#events-datatables").DataTable({});
 
       });
