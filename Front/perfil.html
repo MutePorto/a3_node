@@ -70,8 +70,8 @@
       <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
           <ul class="nav nav-secondary">
-            <li class="nav-item active">
-              <a href="#">
+            <li class="nav-item">
+              <a href="home.html">
                 <i class="fas fa-home"></i>
                 <p>Dashboard</p>
               </a>
@@ -82,8 +82,8 @@
               </span>
               <h4 class="text-section">Components</h4>
             </li>
-            <li class="nav-item">
-              <a href="perfil.html">
+            <li class="nav-item active">
+              <a href="#">
                 <i class="fas fa-user"></i>
                 <p>Perfil</p>
               </a>
@@ -172,228 +172,120 @@
 
       <div class="container">
         <div class="page-inner">
-          <div class="row">
-            <div class="col-sm-6 col-md-3">
-              <div class="card card-stats card-primary card-round">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-5">
-                      <div class="icon-big text-center">
-                        <i class="fas fa-users"></i>
-                      </div>
-                    </div>
-                    <div class="col-7 col-stats">
-                      <div class="numbers">
-                        <p class="card-category">Motoristas</p>
-                        <h4 class="card-title" id="qMotoristas"></h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-              <div class="card card-stats card-info card-round">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-5">
-                      <div class="icon-big text-center">
-                        <i class="fas fa-car"></i>
-                      </div>
-                    </div>
-                    <div class="col-7 col-stats">
-                      <div class="numbers">
-                        <p class="card-category">Carros</p>
-                        <h4 class="card-title" id="qCarros"></h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-              <div class="card card-stats card-success card-round">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-5">
-                      <div class="icon-big text-center">
-                        <i class="fas fa-chart-pie"></i>
-                      </div>
-                    </div>
-                    <div class="col-7 col-stats">
-                      <div class="numbers">
-                        <p class="card-category">Total Eventos</p>
-                        <h4 class="card-title"> 1345</h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-              <div class="card card-stats card-secondary card-round">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-5">
-                      <div class="icon-big text-center">
-                        <i class="far fa-check-circle"></i>
-                      </div>
-                    </div>
-                    <div class="col-7 col-stats">
-                      <div class="numbers">
-                        <p class="card-category">Eventos mês</p>
-                        <h4 class="card-title">576</h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Painel</h4>
-                </div>
-                <div class="card-body">
-                  <ul class="nav nav-pills nav-secondary  nav-pills-no-bd nav-pills-icons justify-content-center"
-                    id="pills-tab-with-icon" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" id="pills-home-tab-icon" data-bs-toggle="pill" href="#motorista"
-                        role="tab" aria-controls="motorista" aria-selected="false">
-                        <i class="fas fa-id-card"></i>
-                        Motorista
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="pills-profile-tab-icon" data-bs-toggle="pill" href="#carros" role="tab"
-                        aria-controls="carros" aria-selected="false">
-                        <i class="fas fa-car-side"></i>
-                        Carros
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" id="pills-contact-tab-icon" data-bs-toggle="pill" href="#eventos" role="tab"
-                        aria-controls="eventos" aria-selected="false">
-                        <i class="fas fa-road"></i>
-                        Eventos
-                      </a>
-                    </li>
-                  </ul>
-                  <div class="tab-content mt-2 mb-3" id="pills-with-icon-tabContent">
-                    <div class="tab-pane fade show active" id="motorista" role="tabpanel"
-                      aria-labelledby="pills-home-tab-icon">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="card">
-                            <div class="card-header">
-                              <button type="button" id="add-motorista" class="btn btn-info" data-bs-toggle="modal"
-                                href="#modalMotorista">
-                                <i class="fas fa-plus"></i> Motorista
-                              </button>
-                            </div>
-                            <div class="card-body">
-                              <div class="table-responsive" id="table-motorista">
-                                <table id="motorista-datatables"
-                                  class="display table table-striped table-secondary table-hover">
-                                  <thead>
-                                    <tr>
-                                      <th>Nome</th>
-                                      <th>cnh categoria</th>
-                                      <th>Data Nasc</th>
-                                      <th>Status</th>
-                                      <th>ações</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody id="body-table-motorista">
-
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="carros" role="tabpanel" aria-labelledby="pills-profile-tab-icon">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="card">
-                            <div class="card-header">
-                              <button type="button" class="btn btn-info" data-bs-toggle="modal" href="#modalCarros">
-                                <i class="fas fa-plus"></i> Carro
-                              </button>
-                            </div>
-                            <div class="card-body">
-                              <div class="table-responsive">
-                                <table id="cars-datatables"
-                                  class="display table table-striped table-secondary table-hover">
-                                  <thead>
-                                    <tr>
-                                      <th>marca</th>
-                                      <th>modelo</th>
-                                      <th>Data-saida</th>
-                                      <th>Data-entrada</th>
-                                      <th>Ações</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody id="body-table-carro"></tbody>
-
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="eventos" role="tabpanel" aria-labelledby="pills-contact-tab-icon">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="card-header">
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" href="#modalEventos">
-                              <i class="fas fa-plus"></i> Evento
-                            </button>
-                          </div>
-                          <div class="card">
-                            <div class="card-body">
-                              <div class="table-responsive">
-                                <table id="events-datatables"
-                                  class="display table table-secondary table-striped table-hover">
-                                  <thead>
-                                    <tr>
-                                      <th>Motorista</th>
-                                      <th>Carro</th>
-                                      <th>Data-inicial</th>
-                                      <th>Data-final</th>
-                                      <th>ações</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody id="body-table-evento"></tbody>
-
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="pagetitle">
             <div class="row">
+              <h1>Profile</h1>
+              <nav>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">Users</li>
+                  <li class="breadcrumb-item active">Profile</li>
+                </ol>
+              </nav>
+            </div><!-- End Page Title -->
+          </div>
+        </div>
 
+        <div class="row page-inner">
+          <div class="col-xl-4">
+
+            <div class="card">
+              <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+
+                <h2>Kevin Anderson</h2>
+                <h3>Administrador</h3>
+                <div class="social-links mt-2">
+                  <a href="#" class="h1 text-primary m-2"><i class="fab fa-twitter"></i></a>
+                  <a href="#" class="h1 text-primary m-2"><i class="fab fa-facebook"></i></a>
+                  <a href="#" class="h1 text-primary m-2"><i class="fab fa-instagram"></i></a>
+                  <a href="#" class="h1 text-primary m-2"><i class="fab fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-xl-8">
+
+            <div class="card">
+              <div class="card-body pt-3">
+                <!-- Bordered Tabs -->
+                <ul class="nav nav-tabs nav-tabs-bordered">
+
+                  <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Visão
+                      Geral</button>
+                  </li>
+
+                  <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Alterar
+                      senha</button>
+                  </li>
+
+                </ul>
+                <div class="tab-content pt-2">
+
+                  <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+
+                    <div class="row mt-3 h4">
+                      <div class="col-lg-3 col-md-4 label ">Nome completo</div>
+                      <div class="col-lg-9 col-md-8 text-primary">Kevin Anderson</div>
+                    </div>
+
+                    <div class="row h4">
+                      <div class="col-lg-3 col-md-4 label">Data de nascimento</div>
+                      <div class="col-lg-9 col-md-8 text-primary">Web Designer</div>
+                    </div>
+
+                    <div class="row h4">
+                      <div class="col-lg-3 col-md-4 label">Email</div>
+                      <div class="col-lg-9 col-md-8 text-primary">k.anderson@example.com</div>
+                    </div>
+
+                  </div>
+
+                  <div class="tab-pane fade pt-3" id="profile-change-password">
+                    <!-- Change Password Form -->
+                    <form>
+
+                      <div class="row mb-3">
+                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                        <div class="col-md-8 col-lg-9">
+                          <input name="password" type="password" class="form-control" id="currentPassword">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                        <div class="col-md-8 col-lg-9">
+                          <input name="newpassword" type="password" class="form-control" id="newPassword">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New
+                          Password</label>
+                        <div class="col-md-8 col-lg-9">
+                          <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                        </div>
+                      </div>
+
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                      </div>
+                    </form><!-- End Change Password Form -->
+
+                  </div>
+
+                </div><!-- End Bordered Tabs -->
+
+              </div>
             </div>
 
           </div>
         </div>
 
-        <footer class="footer">
-
-        </footer>
       </div>
     </div>
 
