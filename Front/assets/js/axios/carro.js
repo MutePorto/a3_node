@@ -146,8 +146,8 @@ function setCarro() { // Função para adicionar um novo carro
             })
                 .then(() => {
                     $('#marca').val("").focus(); // Limpa o campo de marca e foca nele
-                    $('#modelo').val(""); // Limpa o campo de CNH
-                    $('#kmAtual').val(""); // Limpa o campo de data de nascimento
+                    $('#modelo').val(""); // Limpa o campo de modelo
+                    $('#kmAtual').val(""); // Limpa o campo de kmAtual
 
 
                 });

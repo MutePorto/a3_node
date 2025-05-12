@@ -182,7 +182,7 @@
           <div class="col-md-12">
             <div class="card card-secondary bg-secondary-gradient">
               <div class="card-body bubble-shadow">
-                <h1>188</h1>
+                <h1 id="qUsuarios"></h1> <!--Mostra a quantidade de usuarios cadastrados-->
                 <h5 class="op-8">Total de usuarios</h5>
               </div>
             </div>
@@ -203,8 +203,8 @@
                     <thead>
                       <tr>
                         <th>Nome</th>
-                        <th>Data Nasc</th>
-                        <th>email</th>
+                        <th>Email</th>
+                        <th>Tipo</th>
                         <th>ações</th>
                       </tr>
                     </thead>
@@ -265,10 +265,8 @@
                 <input type="hidden" name="idUsuario" id="idUsuario" value="">
                 <label for="nome" class="form-label">Nome</label>
                 <input type="text" class="form-control mb-3" id="nome" required>
-                <label for="cnh" class="form-label">email</label>
-                <input type="email" class="form-control mb-3" id="cnh" required>
-                <label for="dataNasc" class="form-label ">Data de Nascimento</label>
-                <input type="date" class="form-control " id="data_nasc" required>
+                <label for="email" class="form-label">email</label>
+                <input type="email" class="form-control mb-3" id="email" required>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -284,9 +282,16 @@
     </div>
 
     <script>
-      $("#add-usuario").click(function () { // Ao clicar no botão de adicionar usuario, exibe o modal e esconde o botão de editar usuario
+      $("#add-usuario").click(function (e) { // Ao clicar no botão de adicionar usuario, exibe o modal e esconde o botão de editar usuario
+        e.preventDefault();
         document.getElementById('send-form-usuario').style.display = 'block' // Exibe o botão de salvar usuario;
-        document.getElementById('edit-usuraio').style.display = 'none' // Exibe o botão de editar usuario;
+        document.getElementById('edit-usuario').style.display = 'none' // Exibe o botão de editar usuario;
+      });
+
+      $("#send-form-usuario").click((e) => { // Ao clicar no botão de salvar usuario, faz com que o mesmo não recarregue a pagina
+        e.preventDefault();
+        const t = document.getElementById('email').value
+        console.log(t)
       });
 
       // Função para fazer reset dos modais 
