@@ -7,6 +7,7 @@ const userRoutes = require('./routes/userRoutes');
 const motoristaRoutes = require('./routes/motoristaRoutes');
 const carroRoutes = require('./routes/carrosRoutes');
 const eventosRoutes = require('./routes/eventosRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 sequelize.sync({ alter: true })
   .then(() => {
@@ -29,6 +30,7 @@ app.use('/usuarios', userRoutes);
 app.use('/motoristas', motoristaRoutes);
 app.use('/carros', carroRoutes);
 app.use('/eventos', eventosRoutes);
+app.use('/auth', authRoutes);
 
 
 sequelize.authenticate()
