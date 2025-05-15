@@ -156,7 +156,7 @@
                   </div>
                   <span class="profile-username">
                     <span class="op-7">Olá,</span>
-                    <span class="fw-bold" id="nomeUser"></span>
+                    <span class="fw-bold nomeUser"></span>
                   </span>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -198,7 +198,7 @@
               <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
 
-                <h2>Kevin Anderson</h2>
+                <h2 class="nomeUser">Kevin Anderson</h2>
                 <h3>Administrador</h3>
                 <div class="social-links mt-2">
                   <a href="#" class="h1 text-primary m-2"><i class="fab fa-twitter"></i></a>
@@ -236,17 +236,17 @@
 
                     <div class="row mt-3 h4">
                       <div class="col-lg-3 col-md-4 label ">Nome completo</div>
-                      <div class="col-lg-9 col-md-8 text-primary">Kevin Anderson</div>
+                      <div class="col-lg-9 col-md-8 text-primary nomeUser">Kevin Anderson</div>
                     </div>
 
                     <div class="row h4">
-                      <div class="col-lg-3 col-md-4 label">Data de nascimento</div>
-                      <div class="col-lg-9 col-md-8 text-primary">Web Designer</div>
+                      <div class="col-lg-3 col-md-4 label">Data de cadastro</div>
+                      <div class="col-lg-9 col-md-8 text-primary" id="dataCad">Web Designer</div>
                     </div>
 
                     <div class="row h4">
                       <div class="col-lg-3 col-md-4 label">Email</div>
-                      <div class="col-lg-9 col-md-8 text-primary">k.anderson@example.com</div>
+                      <div class="col-lg-9 col-md-8 text-primary" id="emailUser">k.anderson@example.com</div>
                     </div>
 
                   </div>
@@ -256,29 +256,29 @@
                     <form>
 
                       <div class="row mb-3">
-                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Senha Atual</label>
                         <div class="col-md-8 col-lg-9">
                           <input name="password" type="password" class="form-control" id="currentPassword">
                         </div>
                       </div>
 
                       <div class="row mb-3">
-                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Nova Senha</label>
                         <div class="col-md-8 col-lg-9">
                           <input name="newpassword" type="password" class="form-control" id="newPassword">
                         </div>
                       </div>
 
                       <div class="row mb-3">
-                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New
-                          Password</label>
+                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Digite novamente a nova
+                          senha</label>
                         <div class="col-md-8 col-lg-9">
                           <input name="renewpassword" type="password" class="form-control" id="renewPassword">
                         </div>
                       </div>
 
                       <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Change Password</button>
+                        <button type="submit" class="btn btn-primary">Mudar Senha</button>
                       </div>
                     </form><!-- End Change Password Form -->
 
@@ -303,11 +303,6 @@
     <script src="assets/js/core/bootstrap.min.js"></script>
 
     <!-- Funcionalidades backend -->
-    <!-- <script src="assets/js/php/api_php.js"></script> -->
-    <!-- retirar o comenatario desta linha para funcionar com API PHP -->
-    <script src="assets/js/axios/motorista.js"></script>
-    <script src="assets/js/axios/carro.js"></script>
-    <!-- retirar o comenatario desta linha para funcionar com backend node -->
 
     <!-- jQuery Scrollbar -->
     <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
@@ -322,128 +317,9 @@
     <!-- Kaiadmin JS -->
     <script src="assets/js/kaiadmin.min.js"></script>
 
-    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-    <!-- <script src="assets/js/setting-demo.js"></script> -->
     <script src="assets/js/setting-demo2.js"></script>
-    <script src="assets/js/home.js"></script>
+    <script src="assets/js/perfil.js"></script>
 
-    <!-- Modal  Motorista-->
-    <div class="modal fade" id="modalMotorista" aria-hidden="true" aria-labelledby="modalMotoristaLabel" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalMotoristaLabel">Cadastrar Motorista</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="form-motorista">
-              <div class="mb-3">
-                <input type="hidden" name="idMotorista" id="idMotorista" value="">
-                <label for="nome" class="form-label">Nome</label>
-                <input type="text" class="form-control mb-3" id="nome" required>
-                <label for="cnh" class="form-label">CNH</label>
-                <input type="text" class="form-control mb-3" id="cnh" required>
-                <label for="dataNasc" class="form-label ">Data de Nascimento</label>
-                <input type="date" class="form-control " id="data_nasc" required>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" id="send-form-motorista" class="btn btn-success" data-bs-dismiss="modal"
-              onclick="setMotorista()">Salvar</button>
-            <button type="button" id="edit-motorista" class="btn btn-warning" data-bs-dismiss="modal"
-              onclick="editMotorista()" style="display: none;">Alterar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal  Carros-->
-    <div class="modal fade" id="modalCarros" aria-hidden="true" aria-labelledby="modalCarrosLabel" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalCarrosLabel">Cadastrar Carro</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="form-carro">
-              <div class="mb-3">
-                <input type="hidden" name="idCarro" id="idCarro" value="">
-                <label for="marca" class="form-label">Marca</label>
-                <input type="text" class="form-control mb-3" id="marca" required>
-                <label for="modelo" class="form-label">Modelo</label>
-                <input type="text" class="form-control mb-3" id="modelo" required>
-                <label for="kmAtual" class="form-label">Km Atual</label>
-                <input type="text" class="form-control mb-3" id="kmAtual" required>
-                <label for="status" class="form-label">Status</label>
-                <input type="text" class="form-control mb-3" id="status">
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" id="send-form-carro" class="btn btn-success" data-bs-dismiss="modal"
-              onclick="setCarro()">Salvar</button>
-            <button type="button" id="edit-carro" class="btn btn-warning" data-bs-dismiss="modal" onclick="editCarro()"
-              style="display: none;">Alterar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal  Eventos-->
-    <div class="modal fade" id="modalEventos" aria-hidden="true" aria-labelledby="modalEventosLabel" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalEventosLabel">Cadastrar Evento</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form id="form-evento">
-              <div class="mb-3">
-                <label for="marca" class="form-label">Evento</label>
-                <input type="text" class="form-control mb-3" id="evento" required>
-                <label for="modelo" class="form-label">Evento</label>
-                <input type="text" class="form-control mb-3" id="modelo" required>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" id="send-form-evento" class="btn btn-primary">Salvar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      $("#add-motorista").click(function () { // Ao clicar no botão de adicionar motorista, exibe o modal e esconde o botão de editar motorista
-        document.getElementById('send-form-motorista').style.display = 'block' // Exibe o botão de salvar motorista;
-        document.getElementById('edit-motorista').style.display = 'none' // Exibe o botão de editar motorista;
-      });
-
-      // Função para fazer reset dos modais 
-      $('#modalMotorista').on('hidden.bs.modal', function () {
-        $('#form-motorista')[0].reset();
-      });
-      $('#modalCarros').on('hidden.bs.modal', function () {
-        $('#form-carro')[0].reset();
-      });
-      $('#modalEventos').on('hidden.bs.modal', function () {
-        $('#form-evento')[0].reset();
-      });
-
-      // End Função para fazer reset dos modais
-
-      $(document).ready(function () {
-
-        $("#events-datatables").DataTable({});
-
-      });
-    </script>
 </body>
 
 </html>

@@ -16,6 +16,8 @@ $('#form').on('submit', function (e) {
             const dados = response.data;
             sessionStorage.setItem('token', dados.token);
             sessionStorage.setItem('nome', dados.nome);
+            sessionStorage.setItem('email', dados.email);
+            sessionStorage.setItem('dataAt', dados.dataAt);
 
             swal(`Seja bem vindo ${dados.nome.toUpperCase()}`, {
                 icon: "success",

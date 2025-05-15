@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/Users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const e = require('express');
 
 // Rota de login
 router.post('/login', async (req, res) => {
@@ -28,7 +29,7 @@ router.post('/login', async (req, res) => {
       { expiresIn: '1h' }
     );
 
-    res.json({ message: 'Login realizado com sucesso', token, nome: user.nome });
+    res.json({ message: 'Login realizado com sucesso', token, nome: user.nome, email: user.email, dataAt: user.createdAt });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
