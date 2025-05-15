@@ -24,11 +24,11 @@ router.post('/login', async (req, res) => {
     // Rota par gerar token JWT
     const token = jwt.sign(
       { id: user.id, email: user.email, tipo: user.tipo },
-      'seu_segredo_super_secreto', 
+      'seu_segredo_super_secreto',
       { expiresIn: '1h' }
     );
 
-    res.json({ message: 'Login realizado com sucesso', token });
+    res.json({ message: 'Login realizado com sucesso', token, nome: user.nome });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
