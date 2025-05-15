@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/Users');
+const bcrypt = require('bcrypt');
 
 // Rota para listar todos os usuários
 router.get('/', async (req, res) => {
@@ -45,9 +46,35 @@ router.put('/', async (req, res) => {
     if (!usuario) {
       return res.status(404).json({ error: 'Usuário não encontrado' });
     }
-    usuario.nome = nome;
-    usuario.email = email;
-    usuario.senha = senha;
+    usuario.nome = nome || usuario.nome;
+    usuario.email = email || usuario.email;
+    usuario.senha = senha || usuario.senha;
+
+    await usuario.save();
+    res.json(usuario);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Rota para editar a senha do usuário
+router.put('/senha', async (req, res) => {
+  try {
+    const { email, senha, novaSenha } = req.body;
+    const usuario = await User.findOne({ where: { email } });
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+    // Verifica se a senha atual está correta
+    const isMatch = await bcrypt.compare(senha, usuario.senha);
+    if (!isMatch) {
+      return res.status(401).json({ error: 'Senha incorreta' });
+    }
+    // Atualiza a senha do usuário
+
+    usuario.email = email || usuario.email;
+    usuario.senha = novaSenha || usuario.senha;
+
     await usuario.save();
     res.json(usuario);
   } catch (err) {

@@ -193,4 +193,3 @@ function deleteUsuario(idu) { // Função para deletar um usuario
             }
         });
 }
-

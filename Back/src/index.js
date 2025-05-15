@@ -39,7 +39,6 @@ sequelize.authenticate()
 
     return sequelize.sync();
   })
-  .then(() => sequelize.sync({after: true}))
   .then(() => {
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {

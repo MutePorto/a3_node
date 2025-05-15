@@ -253,19 +253,19 @@
 
                   <div class="tab-pane fade pt-3" id="profile-change-password">
                     <!-- Change Password Form -->
-                    <form>
+                    <form id="formSenha" method="POST">
 
                       <div class="row mb-3">
                         <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Senha Atual</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="password" type="password" class="form-control" id="currentPassword">
+                          <input name="password" type="password" class="form-control" id="senhaAtual" required>
                         </div>
                       </div>
 
                       <div class="row mb-3">
                         <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Nova Senha</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="newpassword" type="password" class="form-control" id="newPassword">
+                          <input name="newpassword" type="password" class="form-control" id="novaSenha" required>
                         </div>
                       </div>
 
@@ -273,7 +273,7 @@
                         <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Digite novamente a nova
                           senha</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                          <input name="renewpassword" type="password" class="form-control" id="reNovaSenha" required>
                         </div>
                       </div>
 
@@ -319,6 +319,7 @@
 
     <script src="assets/js/setting-demo2.js"></script>
     <script src="assets/js/perfil.js"></script>
+    <script src="assets/js/axios/usuario.js"></script>
 
 </body>
 
