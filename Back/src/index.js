@@ -9,13 +9,6 @@ const carroRoutes = require('./routes/carrosRoutes');
 const eventosRoutes = require('./routes/eventosRoutes');
 const authRoutes = require('./routes/authRoutes');
 
-sequelize.sync({ alter: true })
-  .then(() => {
-    console.log('Tabelas sincronizadas com sucesso!');
-  })
-  .catch((err) => {
-    console.error('Erro ao sincronizar as tabelas:', err);
-  });
 
 const app = express();
 
