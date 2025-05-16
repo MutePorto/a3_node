@@ -20,8 +20,8 @@ const Carro = sequelize.define('Carro', {
     allowNull: false
   },
   status: {
-    type: DataTypes.ENUM('disponível', 'manutenção', 'indisponível'),
-    defaultValue: 'disponível'
+    type: DataTypes.ENUM('Liberado', 'Manutenção', 'Usando'),
+    defaultValue: 'Liberado'
   }
 }, {
   tableName: 'carros',
