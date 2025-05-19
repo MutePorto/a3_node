@@ -454,15 +454,15 @@
                 <label for="dataNasc" class="form-label ">Data de Nascimento</label>
                 <input type="date" class="form-control " id="data_nasc" required>
               </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="send-form-motorista" class="btn btn-success">Salvar</button>
+                <button type="submit" id="edit-motorista" class="btn btn-warning" data-bs-dismiss="modal"
+                  style="display: none;">Alterar</button>
+              </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" id="send-form-motorista" class="btn btn-success" data-bs-dismiss="modal"
-              onclick="setMotorista()">Salvar</button>
-            <button type="button" id="edit-motorista" class="btn btn-warning" data-bs-dismiss="modal"
-              onclick="editMotorista()" style="display: none;">Alterar</button>
-          </div>
+
         </div>
       </div>
     </div>
@@ -531,6 +531,24 @@
       $("#add-motorista").click(function () { // Ao clicar no botão de adicionar motorista, exibe o modal e esconde o botão de editar motorista
         document.getElementById('send-form-motorista').style.display = 'block' // Exibe o botão de salvar motorista;
         document.getElementById('edit-motorista').style.display = 'none' // Exibe o botão de editar motorista;
+      });
+
+      $('#form-motorista').on('submit', function (e) { // Ao clicar no botão de salvar, faz com que o mesmo não recarregue a pagina
+        e.preventDefault();
+        const form = e.target;
+
+        if (!form.nome.value || !form.cnh.value || !form.data_nasc.value) {
+
+        } else {
+          if (form.idMotorista.value == '') { // Se o id do motorista estiver vazio, chama a função de cadastrar usuario
+            setMotorista().then(() => {
+              $('#modalMotorista').modal('hide'); // Esconde o modal              
+            });
+
+          } else { // Se o id do motorista não estiver vazio, chama a função de editar usuario
+            editMotorista();
+          }
+        }
       });
 
       // Função para fazer reset dos modais 

@@ -124,6 +124,7 @@ function setMotorista() { // Função para adicionar um novo motorista
                 },
             })
                 .then(() => {
+                    $('#modalMotorista').modal('hide'); // Fecha o modal após o cadastro
                     $('#nome').val("").focus(); // Limpa o campo de nome e foca nele
                     $('#cnh').val(""); // Limpa o campo de CNH
                     $('#data_nasc').val(""); // Limpa o campo de data de nascimento
