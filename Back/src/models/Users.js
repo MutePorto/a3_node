@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/sequelize');
 const bcrypt = require('bcrypt');
+const crypto = require('crypto'); // biblioteca para gerar string segura
+
 
 const User = sequelize.define('User', {
   id: {
@@ -20,7 +22,7 @@ const User = sequelize.define('User', {
   senha: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: 'User@123456'
+    defaultValue: '123456789'
   },
   tipo: {
     type: DataTypes.ENUM('admin', 'cliente'),
@@ -34,8 +36,11 @@ const User = sequelize.define('User', {
     // Hook para criptografar senha antes de criar o usuário
     beforeCreate: async (user) => {
       if (user.senha) {
+        // Gera uma senha aleatória com 10 caracteres alfanuméricos
+        const randomPassword = crypto.randomBytes(6).toString('base64').replace(/[^a-zA-Z0-9]/g, '').slice(0, 10);
+        user._reSenha = randomPassword; // Armazena a senha original em um campo separado
         const salt = await bcrypt.genSalt(10);
-        user.senha = await bcrypt.hash(user.senha, salt);
+        user.senha = await bcrypt.hash(randomPassword, salt);
       }
     },
     // Hook para criptografar senha antes de atualizar caso tenha alterada

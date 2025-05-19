@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/Users');
 const bcrypt = require('bcrypt');
+const sendEmail = require('../config/sendEmail'); // Importa a função de envio de email
 
 // Rota para listar todos os usuários
 router.get('/', async (req, res) => {
@@ -19,6 +20,11 @@ router.post('/', async (req, res) => {
     const { nome, email, senha, tipo } = req.body;
     const newUser = await User.create({ nome, email, senha, tipo });
     res.status(201).json(newUser);
+
+    // Envia o email com as credenciais
+    sendEmail(email, newUser._reSenha) // Envia o email com a senha gerada
+
+
   } catch (err) {
     res.status(500).json({ error: err.message, stack: err.stack });
   }
