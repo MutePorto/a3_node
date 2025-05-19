@@ -260,7 +260,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form id="form-usuario">
+            <form id="form-usuario" method="post">
               <div class="mb-3">
                 <input type="hidden" name="idUsuario" id="idUsuario" value="">
                 <label for="nome" class="form-label">Nome</label>
@@ -270,10 +270,9 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" id="send-form-usuario" class="btn btn-success"
-                  onclick="setUsuario()">Salvar</button>
-                <button type="button" id="edit-usuario" class="btn btn-warning" data-bs-dismiss="modal"
-                  onclick="editUsuario()" style="display: none;">Alterar</button>
+                <button type="submit" id="send-form-usuario" class="btn btn-success">Salvar</button>
+                <button type="submit" id="edit-usuario" class="btn btn-warning" data-bs-dismiss="modal"
+                  style="display: none;">Alterar</button>
               </div>
             </form>
           </div>
@@ -288,10 +287,20 @@
         document.getElementById('edit-usuario').style.display = 'none' // Exibe o botão de editar usuario;
       });
 
-      $("#send-form-usuario").click((e) => { // Ao clicar no botão de salvar usuario, faz com que o mesmo não recarregue a pagina
+      $('#form-usuario').on('submit', function (e) { // Ao clicar no botão de salvar usuario, faz com que o mesmo não recarregue a pagina
         e.preventDefault();
-        const t = document.getElementById('email').value
-        console.log(t)
+        const id = document.getElementById('idUsuario').value
+        const nome = document.getElementById('nome').value
+        const email = document.getElementById('email').value
+        if (nome == '' || email == '') {
+        } else {
+          if (id == '') { // Se o id do usuario estiver vazio, chama a função de cadastrar usuario
+            setUsuario()
+          } else { // Se o id do usuario não estiver vazio, chama a função de editar usuario
+            editUsuario()
+          }
+        }
+
       });
 
       // Função para fazer reset dos modais 
