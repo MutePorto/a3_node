@@ -53,6 +53,7 @@ function getMotoristaById(id) { // Função para obter um motorista específico 
             $('#nome').val(dados.nome) // Preenchendo o campo de nome com os dados do motorista
             $('#cnh').val(dados.cnh) // Preenchendo o campo de CNH com os dados do motorista
             $('#data_nasc').val(dados.data_nascimento) // Preenchendo o campo de data de nascimento com os dados do motorista
+            $('#status').val(dados.status) // Preenchendo o campo de status com os dados do motorista
 
         })
         .catch(error => { console.log(error.message) })
@@ -63,9 +64,10 @@ function editMotorista() { // Função para editar um motorista
     const nome = document.getElementById('nome').value // Obtendo o valor do campo de nome
     const cnh = document.getElementById('cnh').value // Obtendo o valor do campo de CNH
     const data_nasc = document.getElementById('data_nasc').value // Obtendo o valor do campo de data de nascimento
-    console.log(id, nome, cnh, data_nasc) // Exibindo os valores no console
+    const status = document.getElementById('status').value // Obtendo o valor do campo de status
+    console.log(id, nome, cnh, data_nasc, status) // Exibindo os valores no console
 
-    axios.put(url + 'motoristas/', { id: id, nome: nome, cnh: cnh, data_nascimento: data_nasc }) // Fazendo uma requisição POST para editar o motorista
+    axios.put(url + 'motoristas/', { id: id, nome: nome, cnh: cnh, data_nascimento: data_nasc, status: status }) // Fazendo uma requisição POST para editar o motorista
         .then(response => { // Quando a requisição for bem-sucedida
             console.log(response) // Exibindo a resposta no console
 
@@ -109,10 +111,11 @@ function setMotorista() { // Função para adicionar um novo motorista
     const nome = document.getElementById('nome').value // Obtendo o valor do campo de nome
     const cnh = document.getElementById('cnh').value // Obtendo o valor do campo de CNH
     const data_nasc = document.getElementById('data_nasc').value // Obtendo o valor do campo de data de nascimento
+    const estado = document.getElementById('status').value // Obtendo o valor do campo de status
 
-    console.log(nome, cnh, data_nasc) // Exibindo os valores no console
+    console.log(nome, cnh, data_nasc, estado) // Exibindo os valores no console
 
-    axios.post(url + 'motoristas/', { nome: nome, cnh: cnh, data_nascimento: data_nasc }) // Fazendo uma requisição POST para adicionar um novo motorista
+    axios.post(url + 'motoristas/', { nome: nome, cnh: cnh, data_nascimento: data_nasc, status: estado }) // Fazendo uma requisição POST para adicionar um novo motorista
         .then(response => { // Quando a requisição for bem-sucedida
             console.log(response) // Exibindo a resposta no console
 

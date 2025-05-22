@@ -18,12 +18,11 @@ const Motorista = sequelize.define('Motorista', {
     },
     data_nascimento: {
         type: DataTypes.DATEONLY,
-        allowNull: false,
+        allowNull: false
     },
     status: {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'ativo'
+        allowNull: false
     }
 }, {
     tableName: 'motoristas', // Nome da tabela no banco de dados

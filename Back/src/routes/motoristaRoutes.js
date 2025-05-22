@@ -26,8 +26,8 @@ router.post('/id', async (req, res) => {  // Rota para buscar motorista por ID
 
 router.post('/', async (req, res) => {  // Rota para adicionar um novo motorista
   try {
-    const { nome, cnh, data_nascimento } = req.body;
-    const newDriver = await Motorista.create({ nome, cnh, data_nascimento });
+    const { nome, cnh, data_nascimento, status } = req.body;
+    const newDriver = await Motorista.create({ nome, cnh, data_nascimento, status });
     res.status(201).json(newDriver);
   } catch (err) {
     res.status(500).json({ error: err.message, stack: err.stack });
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {  // Rota para adicionar um novo motorista
 
 router.put('/', async (req, res) => { // Rota para editar um motorista existente
   try {
-    const { id, nome, cnh, data_nascimento } = req.body;
+    const { id, nome, cnh, data_nascimento, status } = req.body;
     const driver = await Motorista.findByPk(id);
     if (!driver) {
       return res.status(404).json({ error: 'Motorista não encontrado' });
@@ -44,6 +44,7 @@ router.put('/', async (req, res) => { // Rota para editar um motorista existente
     driver.nome = nome;
     driver.cnh = cnh;
     driver.data_nascimento = data_nascimento;
+    driver.status = status;
     await driver.save();
     res.json(driver);
   } catch (err) {
