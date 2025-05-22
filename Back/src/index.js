@@ -7,7 +7,7 @@ const userRoutes = require('./routes/userRoutes');
 const motoristaRoutes = require('./routes/motoristaRoutes');
 const carroRoutes = require('./routes/carrosRoutes');
 const eventosRoutes = require('./routes/eventosRoutes');
-const eventosRoutes = require('./routes/eventosRoutesNovo');
+const eventosRoutesNr = require('./routes/eventosRoutesNovo');
 const authRoutes = require('./routes/authRoutes');
 
 
@@ -24,6 +24,7 @@ app.use('/usuarios', userRoutes);
 app.use('/motoristas', motoristaRoutes);
 app.use('/carros', carroRoutes);
 app.use('/eventos', eventosRoutes);
+app.use('/eventos', eventosRoutesNr); //rota de eventos sem relacionamento entre tabelas
 app.use('/auth', authRoutes);
 
 
