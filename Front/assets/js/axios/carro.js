@@ -79,6 +79,7 @@ function editCarro() { // Função para editar um carro
                 },
             })
                 .then(() => {
+                    $('#modalCarros').modal('hide'); // Fecha o modal após o cadastro
                     $('#cars-datatables').DataTable().clear().destroy(); // Limpa e destrói a tabela DataTable
                     getCarro() // Atualiza a tabela após a edição
                 });
@@ -125,6 +126,7 @@ function setCarro() { // Função para adicionar um novo carro
                 },
             })
                 .then(() => {
+                    $('#modalCarros').modal('hide'); // Fecha o modal após o cadastro
                     $('#marca').val("").focus(); // Limpa o campo de marca e foca nele
                     $('#modelo').val(""); // Limpa o campo de CNH
                     $('#kmAtual').val(""); // Limpa o campo de data de nascimento

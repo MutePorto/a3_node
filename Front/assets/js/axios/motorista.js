@@ -78,6 +78,7 @@ function editMotorista() { // Função para editar um motorista
                 },
             })
                 .then(() => {
+                    $('#modalMotorista').modal('hide'); // Fecha o modal após o cadastro
                     $('#motorista-datatables').DataTable().clear().destroy(); // Limpa e destrói a tabela DataTable
                     getMotorista() // Atualiza a tabela após a edição
                 });
