@@ -63,7 +63,7 @@ function editCarro() { // Função para editar um carro
     const marca = document.getElementById('marca').value // Obtendo o valor do campo de marca
     const modelo = document.getElementById('modelo').value // Obtendo o valor do campo de CNH
     const kmAtual = document.getElementById('kmAtual').value // Obtendo o valor do campo de data de nascimento
-    const status = document.getElementById('status').value // Obtendo o valor do campo status   
+    const status = document.getElementById('statusCar').value // Obtendo o valor do campo status   
     console.log(idc, marca, modelo, kmAtual, status) // Exibindo os valores no console
 
     axios.put(url + 'carros/', { id: idc, marca: marca, modelo: modelo, kmAtual: kmAtual, status: status }) // Fazendo uma requisição POST para editar o carro

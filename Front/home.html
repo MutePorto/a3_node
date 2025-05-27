@@ -340,8 +340,8 @@
                                     <tr>
                                       <th>marca</th>
                                       <th>modelo</th>
-                                      <th>Data-saida</th>
-                                      <th>Data-entrada</th>
+                                      <th>Km Atual</th>
+                                      <th>Status</th>
                                       <th>Ações</th>
                                     </tr>
                                   </thead>
@@ -491,8 +491,12 @@
                 <input type="text" class="form-control mb-3" id="modelo" required>
                 <label for="kmAtual" class="form-label">Km Atual</label>
                 <input type="text" class="form-control mb-3" id="kmAtual" required>
-                <label for="status" class="form-label">Status</label>
-                <input type="text" class="form-control mb-3" id="status">
+                <label for="statusCar" class="form-label">Status</label>
+                <select id="statusCar" class="form-control mb-3">
+                  <option value="Liberado">Liberado</option>
+                  <option value="Manutenção">Manutenção</option>
+                  <option value="Usando">Usando</option>
+                </select>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
