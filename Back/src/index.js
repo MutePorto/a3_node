@@ -24,7 +24,6 @@ app.use('/usuarios', userRoutes);
 app.use('/motoristas', motoristaRoutes);
 app.use('/carros', carroRoutes);
 app.use('/eventos', eventosRoutes);
-app.use('/eventos', eventosRoutesNr); //rota de eventos sem relacionamento entre tabelas
 app.use('/auth', authRoutes);
 
 
