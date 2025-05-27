@@ -359,7 +359,8 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="card-header">
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" href="#modalEventos">
+                            <button type="button" id="add-evento" class="btn btn-info" data-bs-toggle="modal"
+                              href="#modalEventos">
                               <i class="fas fa-plus"></i> Evento
                             </button>
                           </div>
@@ -521,18 +522,32 @@
           </div>
           <div class="modal-body">
             <form id="form-evento">
+              <input type="hidden" name="idEvento" id="idEvento" value="">
               <div class="mb-3">
-                <label for="marca" class="form-label">Evento</label>
-                <input type="text" class="form-control mb-3" id="evento" required>
-                <label for="modelo" class="form-label">Evento</label>
-                <input type="text" class="form-control mb-3" id="modelo" required>
+                <label for="selectMotoristas" class="form-label">Motorista</label>
+                <select id="selectMotoristas" class="form-select" required></select>
+              </div>
+              <div class="mb-3">
+                <label for="selectCarros" class="form-label">Carro</label>
+                <select id="selectCarros" class="form-select" required></select>
+              </div>
+              <div class="mb-3">
+                <label for="data_inicial" class="form-label">Data inicial</label>
+                <input type="datetime-local" class="form-control mb-3" id="data_inicial" required>
+                <label for="data final" class="form-label">data final</label>
+                <input type="datetime-local" class="form-control mb-3" id="data_final">
+                <input type="hidden" name="km_inicial" id="km_inicial">
+                <label for="KmFinal" class="form-label">Km final</label>
+                <input type="number" class="form-control mb-3" id="km_final" disabled>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="send-form-evento" class="btn btn-primary">Salvar</button>
+                <button type="submit" id="edit-evento" class="btn btn-warning" style="display: none;">Alterar</button>
               </div>
             </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" id="send-form-evento" class="btn btn-primary">Salvar</button>
-          </div>
+
         </div>
       </div>
     </div>
@@ -546,6 +561,12 @@
       $("#add-carro").click(function () { // Ao clicar no botão de adicionar carro, exibe o modal e esconde o botão de editar carro
         document.getElementById('send-form-carro').style.display = 'block' // Exibe o botão de salvar carro;
         document.getElementById('edit-carro').style.display = 'none' // Exibe o botão de editar carro;
+      });
+
+      $("#add-evento").click(function () { // Ao clicar no botão de adicionar evento, exibe o modal e esconde o botão de editar evento
+        document.getElementById('send-form-evento').style.display = 'block' // Exibe o botão de salvar evento;
+        document.getElementById('edit-evento').style.display = 'none' // Exibe o botão de editar evento;
+        preencherSelectsDisponiveis() // Preenche os selects de motoristas e carros disponíveis
       });
 
       $('#form-motorista').on('submit', function (e) { // Ao clicar no botão de salvar, faz com que o mesmo não recarregue a pagina
@@ -578,6 +599,30 @@
         }
       });
 
+      // preparar criação de evento	
+      $('#selectCarros').on('change', function () { // Ao selecionar um carro, pega o km atual do carro e coloca no input de km final
+        const carroSelecionado = $(this).val();
+        if (carroSelecionado) {
+          console.log(carroSelecionado);
+          receberKmAtual()
+        }
+
+      });
+      $('#form-evento').on('submit', function (e) { // Ao clicar no botão de salvar, faz com que o mesmo não recarregue a pagina
+        e.preventDefault();
+        const form = e.target;
+
+        if (!form.selectMotoristas.value || !form.selectCarros.value || !form.data_inicial.value) {
+
+        } else {
+          if (form.idEvento.value == '') { // Se o id do evento estiver vazio, chama a função de cadastrar usuario
+            setEvento();
+          } else { // Se o id do evento não estiver vazio, chama a função de editar usuario
+            editEvento();
+          }
+        }
+      });
+
       // Função para fazer reset dos modais 
       $('#modalMotorista').on('hidden.bs.modal', function () {
         $('#form-motorista')[0].reset();
@@ -589,13 +634,7 @@
         $('#form-evento')[0].reset();
       });
 
-      // End Função para fazer reset dos modais
 
-      $(document).ready(function () {
-
-        $("#events-datatables").DataTable({});
-
-      });
     </script>
 </body>
 
