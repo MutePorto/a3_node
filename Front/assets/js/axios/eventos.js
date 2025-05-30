@@ -204,14 +204,18 @@ function editarEvento(id, data_final, km_final) {
                 },
             })
                 .then(() => {
-                    $('#events-datatables').DataTable().destroy(); // Destrói a instância anterior do DataTable
+                    $('#cars-datatables').DataTable().clear().destroy(); // Destrói a instância anterior do DataTable
+                    $('#motorista-datatables').DataTable().clear().destroy(); // Destrói a instância anterior do DataTable
+                    $('#events-datatables').DataTable().clear().destroy(); // Destrói a instância anterior do DataTable
                     getEventos(); // Atualiza a lista de eventos
+                    getCarro(); // Atualiza a lista de carros
+                    getMotorista(); // Atualiza a lista de motoristas
                     $('#modalUpEventos').modal('hide'); // Fecha o modal após a edição
                 });
         })
         .catch(error => {
             console.error(error);
-            swal(`Erro ao editar evento: ${error.message}`, {
+            swal(`Este evento já foi finalizado`, {
                 icon: "error",
                 buttons: {
                     confirm: {
