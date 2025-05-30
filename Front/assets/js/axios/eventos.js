@@ -1,10 +1,12 @@
+function formatarDataISO(dataISO) { // Função para formatar a data no formato "YYYY-MM-DD HH:mm:ss"
+    return dataISO.replace('T', ' ').split('.')[0]; // ex: "2025-05-27 14:00:00"
+}
+
 function getEventos() {
 
     axios.get(url + 'eventos')
         .then(response => {
-            function formatarDataISO(dataISO) {
-                return dataISO.replace('T', ' ').split('.')[0]; // ex: "2025-05-27 14:00:00"
-            }
+
             const eventos = response.data; // Armazena os dados da resposta em uma variável
             const tabelaEventos = document.getElementById('body-table-evento'); // ID da tabela onde os dados serão exibidos
             tabelaEventos.innerHTML = ''; // Limpa a tabela antes de preencher
@@ -21,7 +23,7 @@ function getEventos() {
                         <td>${dataFinal}</td>                        
                         <td>
                         <div class="w-50">
-                            <button class="btn-link btn-primary" onclick="editarEvento(${evento.id})"><i class="fa fa-edit"></i></button>
+                            <button class="btn-link btn-primary" data-bs-toggle="modal" href="#modalUpEventos" onclick="getEventoById(${evento.id})"><i class="fa fa-edit"></i></button>
                             <button class="btn-link btn-danger" onclick="deletarEvento(${evento.id})"><i class="fa fa-times"></i></button>
                         </div>
                         </td>
@@ -29,7 +31,7 @@ function getEventos() {
                 `;
                 } else {
                     tabelaEventos.innerHTML += `
-                    <tr>                        
+                    <tr class="table-success">                        
                         <td>${evento.motorista.nome}</td>
                         <td>${evento.carro.marca} ${evento.carro.modelo}</td>
                         <td>${dataInicial}</td>
@@ -45,6 +47,8 @@ function getEventos() {
                 }
 
             });
+            document.getElementById('qEventos').innerHTML = eventos.length  // Atualiza o contador de eventos na tabela
+            document.getElementById('qEventosAtivos').innerHTML = eventos.filter(e => !e.data_final).length; // Atualiza o contador de eventos ativos 
             $("#events-datatables").DataTable({}); // Inicializa o DataTable após adicionar os dados
         })
         .catch(error => {
@@ -147,6 +151,7 @@ function setEvento() {
                 },
             })
                 .then(() => {
+                    $('#events-datatables').DataTable().destroy(); // Destrói a instância anterior do DataTable
                     getEventos(); // Atualiza a lista de eventos
                     $('#modalEventos').modal('hide'); // Fecha o modal após o cadastro
 
@@ -165,6 +170,59 @@ function setEvento() {
         });
 }
 
-function editarEvento() {
-    console.log('Função de edição de evento ainda não implementada.');
+function getEventoById(ide) {
+    axios.get(url + 'eventos/byId/' + ide)
+        .then(response => {
+            const evento = response.data;
+            console.log(evento);
+            document.getElementById('idEventoUp').value = evento.id; // Preenche o ID do evento
+            document.getElementById('selectMotoristasUp').value = evento.motorista.nome; // Preenche o motorista
+            document.getElementById('selectCarrosUp').value = `${evento.carro.marca} ${evento.carro.modelo}  `; // Preenche o carro
+            document.getElementById('data_inicialUp').value = formatarDataISO(evento.data_inicial); // Preenche a data inicial
+            document.getElementById('km_inicialUp').value = evento.km_inicial; // Preenche o KM inicial
+        })
+        .catch(error => {
+            console.error('Erro ao buscar evento:', error.response?.data || error.message);
+        });
+}
+
+function editarEvento(id, data_final, km_final) {
+
+    axios.put(url + 'eventos', {
+        id: id,
+        data_final: data_final,
+        km_final: km_final
+    })
+        .then(response => {
+            console.log(response);
+            swal(`Evento editado com sucesso!`, {
+                icon: "success",
+                buttons: {
+                    confirm: {
+                        className: "btn btn-success",
+                    },
+                },
+            })
+                .then(() => {
+                    $('#events-datatables').DataTable().destroy(); // Destrói a instância anterior do DataTable
+                    getEventos(); // Atualiza a lista de eventos
+                    $('#modalUpEventos').modal('hide'); // Fecha o modal após a edição
+                });
+        })
+        .catch(error => {
+            console.error(error);
+            swal(`Erro ao editar evento: ${error.message}`, {
+                icon: "error",
+                buttons: {
+                    confirm: {
+                        className: "btn btn-danger",
+                    },
+                },
+            });
+        });
+
+}
+
+function deletarEvento() {
+    console.log('Função de deleção de evento ainda não implementada.');
 }

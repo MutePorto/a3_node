@@ -7,13 +7,13 @@ const Motorista = require('../models/Motoristas');
 const { Op } = require('sequelize');
 
 // Um evento pertence a um motorista
-Evento.belongsTo(Motorista, {
+Evento.belongsTo(Motorista, { // Define a relação de um evento com um motorista
   foreignKey: 'id_motorista',
   as: 'motorista'
 });
 
 // Um evento pertence a um carro
-Evento.belongsTo(Carro, {
+Evento.belongsTo(Carro, { // Define a relação de um evento com um carro
   foreignKey: 'id_carro',
   as: 'carro'
 });
@@ -22,7 +22,7 @@ Evento.belongsTo(Carro, {
 router.get('/', async (req, res) => {
   try {
     const eventos = await Evento.findAll({
-      include: [
+      include: [ // Inclui os modelos relacionados de Motorista e Carro
         {
           model: Motorista,
           as: 'motorista',
@@ -47,17 +47,17 @@ router.get('/', async (req, res) => {
 router.get('/disponiveis', async (req, res) => {
   try {
     //Buscar eventos ativos (em andamento)
-    const eventosAtivos = await Evento.findAll({
-      where: {
-        data_final: {
-          [Op.is]: null
+    const eventosAtivos = await Evento.findAll({ // Eventos sem data_final
+      where: { // Filtrar eventos que ainda estão ativos
+        data_final: { // Verifica se a data_final é nula
+          [Op.is]: null // ou seja, ainda não foi finalizado
         }
       },
-      attributes: ['id_motorista', 'id_carro']
+      attributes: ['id_motorista', 'id_carro'] // Seleciona apenas os IDs de motorista e carro
     });
 
-    const motoristasOcupados = eventosAtivos.map(e => e.id_motorista);
-    const carrosOcupados = eventosAtivos.map(e => e.id_carro);
+    const motoristasOcupados = eventosAtivos.map(e => e.id_motorista); // Extrai os IDs dos motoristas ocupados
+    const carrosOcupados = eventosAtivos.map(e => e.id_carro); // Extrai os IDs dos carros ocupados
 
     // Motoristas disponíveis (status = Liberado e não em evento ativo)
     const motoristasDisponiveis = await Motorista.findAll({
@@ -105,7 +105,36 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+// GET / para buscar eventos por ID
+router.get('/byId/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const evento = await Evento.findByPk(id, {
+      include: [
+        {
+          model: Motorista,
+          as: 'motorista',
+          attributes: ['id', 'nome', 'status']
+        },
+        {
+          model: Carro,
+          as: 'carro',
+          attributes: ['id', 'marca', 'modelo', 'kmAtual', 'status']
+        }
+      ]
+    });
+
+    if (!evento) {
+      return res.status(404).json({ error: 'Evento não encontrado.' });
+    }
+
+    res.json(evento);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.post('/', async (req, res) => { // Rota para criar um novo evento
   try {
     const { id_motorista, id_carro, data_inicial, km_inicial } = req.body;
 
@@ -136,10 +165,10 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:id/devolucao', async (req, res) => {
+router.put('/', async (req, res) => {
   try {
-    const { id } = req.params;
-    const { data_final, km_final } = req.body;
+
+    const { id, data_final, km_final } = req.body;
 
     const evento = await Evento.findByPk(id);
     if (!evento) {
@@ -152,7 +181,8 @@ router.put('/:id/devolucao', async (req, res) => {
 
     const carro = await Carro.findByPk(evento.id_carro);
     if (carro) {
-      carro.status = 'disponível';
+      carro.kmAtual = km_final; // Atualiza o kmAtual do carro
+      carro.status = 'Liberado'; // Define o status do carro como Liberado
       await carro.save();
     }
 

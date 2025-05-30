@@ -229,7 +229,7 @@
                     <div class="col-7 col-stats">
                       <div class="numbers">
                         <p class="card-category">Total Eventos</p>
-                        <h4 class="card-title"> 1345</h4>
+                        <h4 class="card-title" id="qEventos"></h4>
                       </div>
                     </div>
                   </div>
@@ -237,7 +237,7 @@
               </div>
             </div>
             <div class="col-sm-6 col-md-3">
-              <div class="card card-stats card-secondary card-round">
+              <div class="card card-stats card-warning card-round">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-5">
@@ -247,8 +247,8 @@
                     </div>
                     <div class="col-7 col-stats">
                       <div class="numbers">
-                        <p class="card-category">Eventos mês</p>
-                        <h4 class="card-title">576</h4>
+                        <p class="card-category">Eventos ativos</p>
+                        <h4 class="card-title" id="qEventosAtivos">576</h4>
                       </div>
                     </div>
                   </div>
@@ -534,16 +534,53 @@
               <div class="mb-3">
                 <label for="data_inicial" class="form-label">Data inicial</label>
                 <input type="datetime-local" class="form-control mb-3" id="data_inicial" required>
-                <label for="data final" class="form-label">data final</label>
-                <input type="datetime-local" class="form-control mb-3" id="data_final">
-                <input type="hidden" name="km_inicial" id="km_inicial">
-                <label for="KmFinal" class="form-label">Km final</label>
-                <input type="number" class="form-control mb-3" id="km_final" disabled>
+                <label for="km_inicial" class="form-label">Km inicial</label>
+                <input type="text" name="km_inicial" id="km_inicial" class="form-control mb-3" disabled>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="submit" id="send-form-evento" class="btn btn-primary">Salvar</button>
                 <button type="submit" id="edit-evento" class="btn btn-warning" style="display: none;">Alterar</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal  Update Eventos-->
+    <div class="modal fade" id="modalUpEventos" aria-hidden="true" aria-labelledby="modalUpEventosLabel" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalEventosLabel">Atualizar Evento</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="form-evento-up">
+              <input type="hidden" name="idEventoUp" id="idEventoUp" value="">
+              <div class="mb-3">
+                <label for="selectMotoristas" class="form-label">Motorista</label>
+                <input type="text" name="selectMotoristasUp" id="selectMotoristasUp" class="form-control mb-3" disabled>
+              </div>
+              <div class="mb-3">
+                <label for="selectCarros" class="form-label">Carro</label>
+                <input type="text" name="selectCarrosUp" id="selectCarrosUp" class="form-control mb-3" disabled>
+              </div>
+              <div class="mb-3">
+                <label for="data_inicial" class="form-label">Data inicial</label>
+                <input type="text" class="form-control mb-3" id="data_inicialUp" disabled>
+                <label for="data final" class="form-label">Data final</label>
+                <input type="datetime-local" class="form-control mb-3" id="data_finalUp" required>
+                <label for="km_inicialUp" class="form-label">Km Inicial</label>
+                <input type="text" name="km_inicialUp" id="km_inicialUp" class="form-control mb-3" disabled>
+                <label for="KmFinal" class="form-label">Km final</label>
+                <input type="number" class="form-control mb-3" id="km_finalUp" required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" id="edit-evento" class="btn btn-warning">Alterar</button>
               </div>
             </form>
           </div>
@@ -617,9 +654,34 @@
         } else {
           if (form.idEvento.value == '') { // Se o id do evento estiver vazio, chama a função de cadastrar usuario
             setEvento();
-          } else { // Se o id do evento não estiver vazio, chama a função de editar usuario
-            editEvento();
           }
+        }
+      });
+
+      $('#form-evento-up').on('submit', function (e) { // Ao clicar no botão de salvar, faz com que o mesmo não recarregue a pagina
+        e.preventDefault();
+        const form = e.target;
+
+        if (!form.data_finalUp.value || !form.km_finalUp.value) {
+
+
+        } else {
+          if (form.data_finalUp.value < form.data_inicialUp.value) {
+            swal({
+              title: "Erro",
+              text: "A data final não pode ser menor que a data inicial",
+              icon: "error",
+            });
+          } else
+            if (form.km_finalUp.value < form.km_inicialUp.value) {
+              swal({
+                title: "Erro",
+                text: "A Km final não pode ser menor que a Km inicial",
+                icon: "error",
+              });
+            } else {
+              editarEvento(form.idEventoUp.value, form.data_finalUp.value, form.km_finalUp.value);
+            }
         }
       });
 
