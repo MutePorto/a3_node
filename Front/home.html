@@ -453,13 +453,13 @@
                 <label for="nome" class="form-label">Nome</label>
                 <input type="text" class="form-control mb-3" id="nome" required>
                 <label for="cnh" class="form-label">CNH</label>
-                <input type="text" class="form-control mb-3" id="cnh" required>
+                <input type="text" class="form-control mb-3" id="cnh" maxlength="2" required>
                 <label for="dataNasc" class="form-label ">Data de Nascimento</label>
                 <input type="date" class="form-control mb-3" id="data_nasc" required>
                 <label for="status" class="form-label">Estado</label>
                 <select id="status" class="form-control mb-3">
-                  <option value="Livre">Livre</option>
-                  <option value="Indisponivel">Indisponivel</option>
+                  <option value="Ativo">Ativo</option>
+                  <option value="Desativado">Desativado</option>
                 </select>
               </div>
               <div class="modal-footer">
@@ -688,9 +688,11 @@
       // Função para fazer reset dos modais 
       $('#modalMotorista').on('hidden.bs.modal', function () {
         $('#form-motorista')[0].reset();
+        $('#idMotorista').val('');
       });
       $('#modalCarros').on('hidden.bs.modal', function () {
         $('#form-carro')[0].reset();
+        $('#idCarro').val('');
       });
       $('#modalEventos').on('hidden.bs.modal', function () {
         $('#form-evento')[0].reset();

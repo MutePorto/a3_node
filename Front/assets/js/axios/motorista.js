@@ -62,7 +62,7 @@ function getMotoristaById(id) { // Função para obter um motorista específico 
 function editMotorista() { // Função para editar um motorista
     const id = document.getElementById('idMotorista').value // Obtendo o valor do campo de ID
     const nome = document.getElementById('nome').value // Obtendo o valor do campo de nome
-    const cnh = document.getElementById('cnh').value // Obtendo o valor do campo de CNH
+    const cnh = document.getElementById('cnh').value.toUpperCase() // Obtendo o valor do campo de CNH
     const data_nasc = document.getElementById('data_nasc').value // Obtendo o valor do campo de data de nascimento
     const status = document.getElementById('status').value // Obtendo o valor do campo de status
     console.log(id, nome, cnh, data_nasc, status) // Exibindo os valores no console

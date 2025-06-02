@@ -62,7 +62,7 @@ router.get('/disponiveis', async (req, res) => {
     // Motoristas disponíveis (status = Liberado e não em evento ativo)
     const motoristasDisponiveis = await Motorista.findAll({
       where: {
-        status: 'Livre',
+        status: 'Ativo',
         id: {
           [Op.notIn]: motoristasOcupados.length ? motoristasOcupados : [0]
         }
@@ -139,7 +139,7 @@ router.post('/', async (req, res) => { // Rota para criar um novo evento
     const { id_motorista, id_carro, data_inicial, km_inicial } = req.body;
 
     const motorista = await Motorista.findByPk(id_motorista);
-    if (!motorista || motorista.status !== 'Livre') {
+    if (!motorista || motorista.status !== 'Ativo') {
       return res.status(400).json({ error: 'Motorista inválido ou inativo.' });
     }
 
@@ -156,7 +156,7 @@ router.post('/', async (req, res) => { // Rota para criar um novo evento
     });
 
     carro.status = 'Usando';
-    motorista.status = 'Indisponivel';
+
     await carro.save();
 
     res.status(201).json(novoEvento);
@@ -189,6 +189,30 @@ router.put('/', async (req, res) => {
     return res.json({ message: 'Devolução registrada com sucesso.', evento });
   } catch (err) {
     return res.status(500).json({ error: err.message });
+  }
+});
+
+router.delete('/', async (req, res) => {
+  try {
+    const { id } = req.body;
+    const evento = await Evento.findByPk(id);
+    if (!evento) {
+      return res.status(404).json({ error: 'Evento não encontrado.' });
+    }
+    if (evento.data_final) {
+      return res.status(400).json({ error: 'Evento já finalizado, não pode ser deletado.' });
+    }
+
+    const carro = await Carro.findByPk(evento.id_carro);
+    if (carro) {
+      carro.status = 'Liberado'; // Define o status do carro como Liberado
+      await carro.save();
+    }
+
+    await evento.destroy();
+    res.json({ message: 'Evento deletado com sucesso.' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 

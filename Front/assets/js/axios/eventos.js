@@ -227,6 +227,34 @@ function editarEvento(id, data_final, km_final) {
 
 }
 
-function deletarEvento() {
-    console.log('Função de deleção de evento ainda não implementada.');
+function deletarEvento(ide) {
+    axios.delete(url + 'eventos', {
+        data: { id: ide } // Passando o ID do evento a ser deletado
+    })
+        .then(response => {
+            console.log(response);
+            swal(`Evento deletado com sucesso!`, {
+                icon: "success",
+                buttons: {
+                    confirm: {
+                        className: "btn btn-success",
+                    },
+                },
+            })
+                .then(() => {
+                    $('#events-datatables').DataTable().clear().destroy(); // Destrói a instância anterior do DataTable
+                    getEventos(); // Atualiza a lista de eventos
+                });
+        })
+        .catch(error => {
+            console.error(error);
+            swal(`${error.response.data.error}`, {
+                icon: "error",
+                buttons: {
+                    confirm: {
+                        className: "btn btn-danger",
+                    },
+                },
+            });
+        });
 }
