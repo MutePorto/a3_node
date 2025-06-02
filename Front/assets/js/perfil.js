@@ -1,4 +1,3 @@
-const url = 'http://localhost:3000/'; // URL base da API
 if (sessionStorage.getItem('token') == null) {
     window.location.href = "index.html";
 } else {
@@ -7,7 +6,7 @@ if (sessionStorage.getItem('token') == null) {
         element.innerHTML = sessionStorage.getItem('nome').toUpperCase();
     });
     document.getElementById('emailUser').innerHTML = sessionStorage.getItem('email');
-    document.getElementById('dataCad').innerHTML = sessionStorage.getItem('dataAt');
+    document.getElementById('dataCad').innerHTML = sessionStorage.getItem('dataAt').replace('T', ' ').split('.')[0];
     document.body.style.display = 'block';
 }
 

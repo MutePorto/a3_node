@@ -1,6 +1,3 @@
-
-const url = "http://localhost:3000/" // URL do servidor
-
 const btu = document.getElementById('body-table-usuario') // ID da tabela onde os dados serão exibidos
 let senha = ""
 
