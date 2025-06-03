@@ -188,13 +188,16 @@
             <label for="selectCarros" class="form-label">Carro</label>
             <select id="selectCarros" class="form-select"></select>
           </div>
-          <div class="col-sm-6 col-md-3">
+          <div class="col-sm-6 col-md-2">
             <label for="data_inicial" class="form-label">Data inicial</label>
             <input type="date" class="form-control mb-3" id="data_inicial">
           </div>
-          <div class="col-sm-6 col-md-3">
+          <div class="col-sm-6 col-md-2">
             <label for="data_final" class="form-label">Data final</label>
-            <input type="date" class="form-control" id="data_final">
+            <input type="date" class="form-control mb-3" id="data_final">
+          </div>
+          <div class="row col-sm-6 col-md-2 align-items-center">
+            <button type="button" class="btn btn-success">Gerar</button>
           </div>
 
         </div>
@@ -202,13 +205,10 @@
         <div class="row page-inner">
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header">
-
-              </div>
               <div class="card-body">
                 <div class="table-responsive" id="table-relatorios">
                   <table id="relatorios-datatables" class="display table table-striped table-secondary table-hover">
-                    <thead>
+                    <thead id="thead-table-relatorios">
                       <tr>
                         <th>Nome</th>
                         <th>Email</th>
@@ -284,12 +284,6 @@
         }
 
       });
-
-      // Função para fazer reset dos modais 
-      $('#modalUsuario').on('hidden.bs.modal', function () {
-        $('#form-usuario')[0].reset();
-      });
-      // End Função para fazer reset dos modais
     </script>
 </body>
 
