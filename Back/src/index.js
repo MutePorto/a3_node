@@ -9,6 +9,7 @@ const carroRoutes = require('./routes/carrosRoutes');
 const eventosRoutes = require('./routes/eventosRoutes');
 const eventosRoutesNr = require('./routes/eventosRoutesNovo');
 const authRoutes = require('./routes/authRoutes');
+const relatoriosRoutes = require('./routes/relatorios');
 
 
 const app = express();
@@ -25,6 +26,7 @@ app.use('/motoristas', motoristaRoutes);
 app.use('/carros', carroRoutes);
 app.use('/eventos', eventosRoutes);
 app.use('/auth', authRoutes);
+app.use('/relatorios', relatoriosRoutes);
 
 
 sequelize.authenticate()
