@@ -215,17 +215,17 @@
             <div class="card">
               <div class="card-body">
                 <div class="table-responsive" id="table-relatorios">
+                  <div class="card-header mb-3">
+                    <h1>Ralatório de eventos</h1>
+                  </div>
                   <table id="relatorios-datatables" class="display table table-striped table-secondary table-hover">
                     <thead id="thead-table-relatorios">
-                      <tr>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Tipo</th>
-                        <th>novo campo</th>
-                      </tr>
+
                     </thead>
                     <tbody id="body-table-relatorios">
-
+                      <tr>
+                        <td colspan="4" class="text-center">Click em gerar para obter um relatório.</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -268,31 +268,6 @@
     <script src="assets/js/setting-demo2.js"></script>
     <script src="assets/js/home.js"></script>
 
-
-
-    <script>
-      $("#add-usuario").click(function (e) { // Ao clicar no botão de adicionar usuario, exibe o modal e esconde o botão de editar usuario
-        e.preventDefault();
-        document.getElementById('send-form-usuario').style.display = 'block' // Exibe o botão de salvar usuario;
-        document.getElementById('edit-usuario').style.display = 'none' // Exibe o botão de editar usuario;
-      });
-
-      $('#form-usuario').on('submit', function (e) { // Ao clicar no botão de salvar usuario, faz com que o mesmo não recarregue a pagina
-        e.preventDefault();
-        const id = document.getElementById('idUsuario').value
-        const nome = document.getElementById('nome').value
-        const email = document.getElementById('email').value
-        if (nome == '' || email == '') {
-        } else {
-          if (id == '') { // Se o id do usuario estiver vazio, chama a função de cadastrar usuario
-            setUsuario()
-          } else { // Se o id do usuario não estiver vazio, chama a função de editar usuario
-            editUsuario()
-          }
-        }
-
-      });
-    </script>
 </body>
 
 </html>
