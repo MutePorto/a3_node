@@ -13,7 +13,9 @@
     }
   </style>
   <link rel="icon" href="assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Fonts and icons -->
   <script src="assets/js/plugin/webfont/webfont.min.js"></script>
   <script>
@@ -215,8 +217,15 @@
             <div class="card">
               <div class="card-body">
                 <div class="table-responsive" id="table-relatorios">
-                  <div class="card-header mb-3">
-                    <h1>Ralatório de eventos</h1>
+                  <div class="card-header d-flex bd-highlight mb-3 justify-content-end">
+                    <div class="flex-grow-1 bd-highligh">
+                      <h1>Ralatório de eventos</h1>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <div class="">
+                        <button class="btn btn-info">Imprimir PDF</button>
+                      </div>
+                    </div>
                   </div>
                   <table id="relatorios-datatables" class="display table table-striped table-secondary table-hover">
                     <thead id="thead-table-relatorios">
