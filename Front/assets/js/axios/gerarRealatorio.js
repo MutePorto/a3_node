@@ -88,6 +88,7 @@ $('#gerarRelatorio').on('click', async () => {
         response = await axios.get(url + endpoint);
 
         if (response.data.length === 0) {
+            t = 0; // Reseta o contador para permitir novas consultas
             tbody.innerHTML = `<tr><td colspan="4" class="text-center">Nenhum dado encontrado.</td></tr>`;
         } else {
             if (!motoristaId && carroId) {
