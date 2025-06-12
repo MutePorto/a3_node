@@ -26,15 +26,10 @@ Este é o repositório do **Projeto A3**, uma aplicação full‑stack que combi
 
 a3_node/
 ├── frontend/
-| |
 | ├── assets/
-| |
 │ ├── index.html
-| |
 │ ├── home.html
-| |
 │ |── perfil.html
-| |
 | └── relatorios.html
 
 
