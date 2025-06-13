@@ -7,7 +7,6 @@ const userRoutes = require('./routes/userRoutes');
 const motoristaRoutes = require('./routes/motoristaRoutes');
 const carroRoutes = require('./routes/carrosRoutes');
 const eventosRoutes = require('./routes/eventosRoutes');
-const eventosRoutesNr = require('./routes/eventosRoutesNovo');
 const authRoutes = require('./routes/authRoutes');
 const relatoriosRoutes = require('./routes/relatorios');
 
