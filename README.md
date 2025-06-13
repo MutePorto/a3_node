@@ -100,7 +100,7 @@ a3_node/
 
 ## 💡 Licença
 
-Distribuído sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Distribuído sob a licença **MIT**.
 
 ---
 Feito por
